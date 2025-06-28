@@ -1,0 +1,63 @@
+<div class="container">
+  <h2>Consentements</h2>
+
+  <p class="text">
+    En application du RGPD, cette rubrique vous permet de choisir les modalités
+    d’envoi de vos documents de gestion et les communications que vous acceptez
+    de recevoir.​
+    <mat-icon [matTooltip]="descTooltip" class="bg-pink">help</mat-icon>
+  </p>
+
+  <mat-accordion [multi]="true">
+    {{ resetInfoBulleIndex() }}
+    @for (item of consentList(); track $index) {
+    <mat-expansion-panel expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title class="title main-title">{{
+          item.type
+        }}</mat-panel-title>
+      </mat-expansion-panel-header>
+      @for (el of item.items; track $index) {
+      <div class="panel-content">
+        <div class="grid-container">
+          <div class="text-column">
+            <p>
+              {{ el.phrase }}
+              <!-- @if(el.isInfoBulle){ -->
+              <mat-icon
+                [matTooltip]="
+                  customInfoBulleListe[getAndIncrementInfoBulleIndex()]
+                "
+                class="bg-pink"
+                >help</mat-icon
+              >
+              <!-- } -->
+            </p>
+          </div>
+          <div class="radio-column">
+            <mat-radio-group (change)="onRadioChange($event, el)">
+              @for (response of el.consentements_TypeReponse;track $index) {
+              <mat-radio-button color="primary" [value]="response.id">
+                {{ response.libelle1 }}
+              </mat-radio-button>
+              }
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+      }
+    </mat-expansion-panel>
+    }
+  </mat-accordion>
+  <div class="form-actions">
+    <button
+      (click)="submit()"
+      mat-raised-button
+      color="primary"
+      class="ipeca-primary"
+      type="submit">
+      MODIFIER
+    </button>
+  </div>
+  <app-beneficiary-cgu type="consentement" />
+</div>

@@ -1,0 +1,116 @@
+@use "../../../../../../../shared-library/src/lib/styles/variables" as *;
+@use "@angular/material" as mat;
+
+.container {
+  background-color: $light-blue;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mdc-list {
+  padding: 0;
+}
+
+.mdc-list-parent.primary-item {
+  background-color: #f0f0f0;
+  font-weight: bold;
+
+  &:hover {
+    background-color: #e0e0e0;
+  }
+
+  span {
+    color: $preheader-bg-color !important;
+  }
+
+  &.selected span {
+    color: $btn-bg-color !important;
+  }
+}
+
+.mdc-list-item {
+  font-family: Calibri;
+  width: 100%;
+  font-size: 14px;
+}
+
+.mdc-list-parent {
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+
+  &.selected {
+    background-color: transparent !important;
+
+    span {
+      color: $btn-bg-color !important;
+    }
+  }
+
+  &:hover:not(.selected) {
+    span {
+      color: $btn-bg-color !important;
+    }
+  }
+}
+
+.selected {
+  color: $btn-bg-color;
+}
+
+mat-action-list {
+  @include mat.list-overrides(
+    (
+      list-item-container-color: $light-blue,
+      list-item-label-text-color: $preheader-bg-color,
+      list-item-label-text-size: $font-size-md,
+      list-item-hover-label-text-color: $btn-bg-color,
+      list-item-hover-state-layer-color: transparent,
+      list-item-hover-state-layer-opacity: 0,
+    )
+  );
+}
+
+.sub-list {
+  background-color: #f8f9fa !important;
+  margin: 0;
+  padding: 0;
+
+  @include mat.list-overrides(
+    (
+      list-item-container-color: #f8f9fa,
+      list-item-label-text-color: $preheader-bg-color,
+      list-item-hover-label-text-color: $btn-bg-color,
+      list-item-hover-state-layer-color: transparent,
+      list-item-hover-state-layer-opacity: 0,
+    )
+  );
+
+  .mdc-list-item {
+    background-color: white !important;
+
+    &:hover {
+      background-color: white !important;
+
+      .child-item-text {
+        color: $btn-bg-color !important;
+      }
+    }
+
+    &.selected-item {
+      background-color: #e3f2fd !important;
+
+      .child-item-text {
+        color: $btn-bg-color !important;
+      }
+    }
+  }
+}
+
+.child-item-text {
+  margin-left: 1rem;
+  color: $preheader-bg-color !important;
+
+  &.selected {
+    color: $btn-bg-color !important;
+  }
+}

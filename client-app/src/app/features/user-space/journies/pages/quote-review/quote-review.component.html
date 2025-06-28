@@ -1,0 +1,15 @@
+<h2>Mes devis des 6 derniers mois</h2>
+@let state = (loadingState$ | async); @if (state && state.loading) {
+<lib-skeleton-table-loader />
+}@else {
+
+<lib-custom-table
+  [data]="dataToDisplay"
+  [emptyMsg]="emptyMsg"
+  [displayedColumns]="columns"
+  [columnTitles]="columnTitles"
+  [showDeleteActions]="false"
+  [showEditActions]="false"
+  [showPagination]="false"
+  (onDownload)="handleDownload($event)" />
+}

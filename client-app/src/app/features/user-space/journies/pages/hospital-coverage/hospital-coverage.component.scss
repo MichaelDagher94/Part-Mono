@@ -1,0 +1,114 @@
+@use "../../../../../../../../shared-library/src/lib/styles/variables" as *;
+@use "sass:color";
+.section-container {
+  width: 50vw;
+}
+
+.custom-tooltip {
+  white-space: pre-line;
+  font-size: 14px;
+  padding: 10px;
+  color: white;
+  max-width: 300px;
+  line-height: 1.5;
+}
+
+h2 {
+  color: $preheader-bg-color;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 0px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.uppercase-title {
+  text-transform: uppercase;
+}
+.text {
+  color: $table-text-color;
+}
+.full-width {
+  width: 100%;
+}
+.form-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+.form-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+}
+.info-text-required {
+  font-size: 13px;
+  font-style: italic;
+  color: #707070;
+}
+.form-radio {
+  display: flex;
+  flex-direction: column;
+}
+.companySection {
+  width: 100%;
+  border: 1px solid $preheader-bg-color;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+.mt2 {
+  margin-top: 2rem;
+}
+.ipeca-primary {
+  background-color: $preheader-bg-color !important;
+  font-family: "Calibri-Bold";
+  font-weight: 500;
+  color: $white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  // États
+  &:hover:not(:disabled) {
+    background-color: $btn-bg-color;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  // Version disabled
+  &:disabled {
+    background-color: color.scale($preheader-bg-color, $lightness: -10%);
+    color: rgba($white, 0.5);
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  // Version avec icône
+  &.with-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+h3 {
+  color: #003264;
+}
+.info-text-required {
+  font-size: 13px;
+  font-style: italic;
+  color: #707070;
+}

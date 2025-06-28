@@ -1,0 +1,12 @@
+/home/vsts/work/1/s/Core.Shared/bin/$(BuildConfiguration)/net8.0/Core.Shared.deps.json
+/home/vsts/work/1/s/Core.Shared/bin/$(BuildConfiguration)/net8.0/Core.Shared.dll
+/home/vsts/work/1/s/Core.Shared/bin/$(BuildConfiguration)/net8.0/Core.Shared.pdb
+/home/vsts/work/1/s/Core.Shared/obj/$(BuildConfiguration)/net8.0/Core.Shared.GeneratedMSBuildEditorConfig.editorconfig
+/home/vsts/work/1/s/Core.Shared/obj/$(BuildConfiguration)/net8.0/Core.Shared.AssemblyInfoInputs.cache
+/home/vsts/work/1/s/Core.Shared/obj/$(BuildConfiguration)/net8.0/Core.Shared.AssemblyInfo.cs
+/home/vsts/work/1/s/Core.Shared/obj/$(BuildConfiguration)/net8.0/Core.Shared.csproj.CoreCompileInputs.cache
+/home/vsts/work/1/s/Core.Shared/obj/$(BuildConfiguration)/net8.0/Core.Shared.sourcelink.json
+/home/vsts/work/1/s/Core.Shared/obj/$(BuildConfiguration)/net8.0/Core.Shared.dll
+/home/vsts/work/1/s/Core.Shared/obj/$(BuildConfiguration)/net8.0/refint/Core.Shared.dll
+/home/vsts/work/1/s/Core.Shared/obj/$(BuildConfiguration)/net8.0/Core.Shared.pdb
+/home/vsts/work/1/s/Core.Shared/obj/$(BuildConfiguration)/net8.0/ref/Core.Shared.dll

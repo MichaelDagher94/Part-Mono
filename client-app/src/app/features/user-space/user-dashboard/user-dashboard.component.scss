@@ -1,0 +1,26 @@
+@use "../../../../../../shared-library/src/lib/styles/variables" as *;
+h2 {
+  color: $preheader-bg-color;
+  padding: 0;
+  border: none;
+  font-size: 30px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 25% 50% 25%; // 3/12 - 6/12 - 3/12
+  width: 100%;
+  gap: 1rem;
+}
+
+.dashboard-col {
+  min-height: 100px;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.center-col {
+  background: #fff;
+}

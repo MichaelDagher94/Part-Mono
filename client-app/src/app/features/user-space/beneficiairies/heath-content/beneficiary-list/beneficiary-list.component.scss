@@ -1,0 +1,16 @@
+@use "../../../../../../../../shared-library/src/lib/styles/variables" as *;
+.title {
+  // padding-block: 12px;
+  color: $preheader-bg-color;
+}
+h2 {
+  margin-top: 0;
+  padding-top: 0;
+  margin-bottom: 0px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+.error-msg {
+  color: $table-text-color;
+}

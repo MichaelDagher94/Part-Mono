@@ -1,0 +1,57 @@
+@use "../../../../../../../../shared-library/src/lib/styles/variables" as *;
+.widget-list {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.actuality-section {
+  background: #eaeaea;
+  margin-top: 1.5rem;
+  box-sizing: border-box;
+  padding: 2rem 2rem;
+}
+
+.actuality-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.actuality-title {
+  font-weight: bold;
+  color: $preheader-bg-color;
+  font-size: 1.2rem;
+  font-family: "Calibri-bold", Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+}
+
+.actuality-link {
+  color: $btn-bg-color;
+  font-style: italic;
+  font-size: 1rem;
+  text-decoration: none;
+  font-family: "calibri", Arial, Helvetica, sans-serif;
+  transition: text-decoration 0.2s;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.underline {
+  margin-top: 0.5rem;
+  height: 3px;
+  background: $preheader-bg-color;
+  width: 100%;
+  border-radius: 2px;
+}
+
+.offer-section {
+  margin-top: 20px;
+}
+.offer-title {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-family: "Calibri-bold";
+  letter-spacing: -0.4px;
+}

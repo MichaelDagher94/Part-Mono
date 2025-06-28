@@ -1,0 +1,79 @@
+<div class="container">
+  <h2>Télétransmission</h2>
+
+  <section>
+    <span class="text"> La télétransmission NOEMIE permet: </span>
+    <ul class="text">
+      <li>Une simplification des démarches</li>
+      <li>Des remboursements automatiques et plus rapides</li>
+    </ul>
+    <p class="text">
+      Plus besoin d’adresser vos décomptes de Sécurité sociale ni vos
+      justificatifs à IPECA sauf pour certains actes.
+    </p>
+  </section>
+
+  <h3 class="title">Télétransmission vers IPECA</h3>
+  <h4
+    [class]="
+      currentParticipant().statusTeleTransmission ? 'title' : 'nontitle'
+    ">
+    Transmission @if (currentParticipant().statusTeleTransmission) { activée
+    <mat-icon class="bg-pink icon-inline" [matTooltip]="infoBulle"
+      >help</mat-icon
+    >
+    } @else { non activée
+    <button
+      disableRipple="true"
+      mat-icon-button
+      class="small-button"
+      (click)="onEditTeletransmission()">
+      <mat-icon>create</mat-icon>
+    </button>
+    }
+  </h4>
+
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    @if (displaycheckBox()) {
+    <div class="form-row checkbox-section">
+      <mat-label class="checkbox-label text"
+        >Activer la télétransmission</mat-label
+      >
+      <div class="checkbox-value">
+        <mat-checkbox
+          color="primary"
+          formControlName="teletransmission"
+          (change)="onChecked($event)">
+          {{
+            formGroup.get("teletransmission")?.value ? "activé" : "non activé"
+          }}
+        </mat-checkbox>
+      </div>
+    </div>
+    } @if (displayFileUpload()) {
+
+    <div class="form-row">
+      <app-ipeca-file-upload
+        (filesChanged)="onFilesChanged($event)"
+        [sectionName]="sectionName">
+        <app-beneficiary-info-banner
+          [title]="''"
+          [filesToUpload]="requiredDocuments()"></app-beneficiary-info-banner>
+      </app-ipeca-file-upload>
+    </div>
+
+    <div class="form-actions">
+      <button
+        mat-raised-button
+        color="primary"
+        class="ipeca-primary"
+        type="submit">
+        Transmettre
+      </button>
+
+      <div class="info-text-required">*Champs obligatoires</div>
+    </div>
+    <app-beneficiary-cgu></app-beneficiary-cgu>
+    }
+  </form>
+</div>

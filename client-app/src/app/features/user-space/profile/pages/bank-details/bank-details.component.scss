@@ -1,0 +1,31 @@
+@use "../../../../../../../../shared-library/src/lib/styles/variables" as *;
+h2 {
+  margin: 0 0px;
+  color: $preheader-bg-color;
+}
+.subtitle {
+  color: $preheader-bg-color;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-block: 0.5rem 0px;
+}
+.container {
+  width: 40vw;
+}
+
+.section {
+  padding-block: 1rem;
+}
+.icon-title {
+  border-bottom: 1px solid $footer-background-color;
+}
+.text {
+  color: $table-text-color;
+}
+.divider {
+  background-color: $footer-background-color;
+  margin: 0;
+  border: none;
+  height: 1px;
+}

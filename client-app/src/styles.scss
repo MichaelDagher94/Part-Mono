@@ -1,0 +1,57 @@
+@font-face {
+  font-family: "Calibri";
+  src: url("assets/fonts/calibri/calibri-regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Calibri-Bold";
+  src: url("assets/fonts/calibri/calibri-bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Calibri";
+  src: url("assets/fonts/calibri/calibri-bold-italic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Calibri-Bold-italic";
+  src: url("assets/fonts/calibri/calibri-bold-italic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Calibri-italic";
+  src: url("assets/fonts/calibri/calibri-italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+body {
+  font-family: "Calibri", Arial, sans-serif;
+}
+* {
+  font-family: "Calibri", Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+p {
+  .mat-icon {
+    vertical-align: middle;
+    height: 20px;
+    width: 20px;
+    font-size: 20px;
+    line-height: 20px;
+  }
+}
+::ng-deep .custom-tooltip {
+  white-space: pre-line;
+}

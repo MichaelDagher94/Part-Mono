@@ -1,0 +1,118 @@
+<h2 class="title">Gérer le multi RIB</h2>
+<!-- part 1 -->
+<form [formGroup]="consentForm" (ngSubmit)="onSubmit()">
+  <div class="container container-1">
+    <div class="text">{{ text1 }}</div>
+    <div class="radio">
+      <mat-radio-group
+        formControlName="participantConsent"
+        class="radio-group"
+        aria-label="Consentement participant"
+        color="primary">
+        @for (radio of radioButtonChoice; track radio) {
+        <mat-radio-button [value]="radio.code">{{
+          radio.label
+        }}</mat-radio-button>
+        }
+      </mat-radio-group>
+    </div>
+  </div>
+  <!-- part 2 -->
+  <div class="container container-2">
+    <div class="text">{{ text2 }}</div>
+    <div class="radio">
+      <mat-radio-group
+        formControlName="beneficiaryConsent"
+        class="radio-group"
+        aria-label="Consentement ayant droit"
+        color="primary">
+        @for (radio of radioButtonChoice; track radio) {
+        <mat-radio-button [value]="radio.code">{{
+          radio.label
+        }}</mat-radio-button>
+        }
+      </mat-radio-group>
+    </div>
+  </div>
+
+  <button mat-flat-button type="submit" color="primary" class="confirm-btn">
+    Enregistrer
+  </button>
+</form>
+
+<div class="howto">
+  <h4 class="subtitle">COMMENT RETIRER SON CONSENTEMENT ?</h4>
+
+  <div class="description">
+    Le participant et/ou l’ayant droit, dispose du droit de retirer son
+    consentement, par simple demande écrite adressée à IPECA PREVOYANCE. Ce
+    retrait entrainera toutefois la cessation du dispositif de MULTI RIB. La
+    politique de protection des données personnelles d’IPECA PREVOYANCE est
+    disponible sur le site internet : ipeca.fr. L’ensemble des traitements
+    effectués par IPECA PREVOYANCE au titre des données à caractère personnel
+    sont également rappelés dans votre notice d’information.
+  </div>
+
+  <div class="data-table">
+    <table
+      mat-table
+      [dataSource]="multiRibFacadeService.beneficiaries()"
+      class="full-width-table">
+      <!-- Colonne Nom -->
+      <ng-container matColumnDef="nom">
+        <th mat-header-cell *matHeaderCellDef>NOM</th>
+        <td mat-cell *matCellDef="let element">{{ element.nom }}</td>
+      </ng-container>
+
+      <!-- Colonne Prénom -->
+      <ng-container matColumnDef="prenom">
+        <th mat-header-cell *matHeaderCellDef>PRÉNOM</th>
+        <td mat-cell *matCellDef="let element">{{ element.prenom }}</td>
+      </ng-container>
+
+      <!-- Colonne Date de Naissance -->
+      <ng-container matColumnDef="dateNaissance">
+        <th mat-header-cell *matHeaderCellDef>DATE DE NAISSANCE</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.dateDeNaissance }}
+        </td>
+      </ng-container>
+
+      <!-- Colonne Statut -->
+      <ng-container matColumnDef="statut">
+        <th mat-header-cell *matHeaderCellDef>STATUT DE LA DEMANDE</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.statut || "Non Activée" }}
+        </td>
+      </ng-container>
+
+      <!-- Colonne RIB -->
+      <ng-container matColumnDef="rib">
+        <th mat-header-cell *matHeaderCellDef>RIB</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.statutRib ? element.statutRib : "-" }}
+        </td>
+      </ng-container>
+
+      <!-- Colonne Modification -->
+      <ng-container matColumnDef="modification">
+        <th mat-header-cell *matHeaderCellDef>MODIFICATION</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            color="primary"
+            type="button"
+            (click)="goToAddRib(element.id)">
+            <mat-icon>add_circle</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- En-têtes et lignes -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <app-beneficiary-cgu />
+</div>

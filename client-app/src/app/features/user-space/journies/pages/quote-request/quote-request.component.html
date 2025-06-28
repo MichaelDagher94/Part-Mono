@@ -1,0 +1,71 @@
+<section class="section-container">
+  <h2 class="title">Devis</h2>
+  <span class="text">
+    Vous souhaitez nous adresser un devis pour étude, merci de renseigner les
+    informations ci-dessous.
+  </span>
+  <lib-banner-information [bannerText]="bannerText" />
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Type de devis</mat-label>
+        <mat-select
+          appAutofocus
+          formControlName="quoteType"
+          (selectionChange)="onTypeSelected($event.value)">
+          @for (type of quoteTypes(); track type) {
+          <mat-option [value]="type">
+            {{ type.typeDocument }}
+          </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    @if (isVisiblePartnerProviderField()) {
+    <div class="form-row form-radio">
+      <mat-label class="title uppercase-title"
+        >Professionnel de santé partenaire ?</mat-label
+      >
+      <mat-radio-group
+        color="primary"
+        formControlName="isPartnerProvider"
+        class="radio-group">
+        <mat-radio-button [value]="0">Non</mat-radio-button>
+        <mat-radio-button [value]="1">Oui</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    }
+
+    <div class="">
+      <app-ipeca-file-upload
+        (filesChanged)="onFileSelected($event)"
+        [sectionName]="sectionName">
+        <app-beneficiary-info-banner
+          [title]="''"
+          [filesToUpload]="bannerUploadFileList()"
+      /></app-ipeca-file-upload>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label class="">Commentaire</mat-label>
+        <textarea
+          matInput
+          formControlName="comments"
+          rows="3"
+          maxlength="400"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="form-actions">
+      <button mat-raised-button type="submit" class="ipeca-primary">
+        TRANSMETTRE
+      </button>
+      <div class="info-text-required">*Champs obligatoires</div>
+    </div>
+  </form>
+
+  <app-beneficiary-cgu />
+</section>

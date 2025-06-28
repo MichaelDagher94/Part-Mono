@@ -1,0 +1,43 @@
+<div class="container">
+  <h2 class="title">Portabilité</h2>
+  <div class="text">
+    La portabilité permet aux salariés dont le contrat de travail a été rompu,
+    de continuer à bénéficier des couvertures santé et prévoyance en place chez
+    son ancien employeur. Ce maintien est limité à 12 mois sous certaines
+    conditions.
+  </div>
+</div>
+<form [formGroup]="portabilityForm" (ngSubmit)="onSubmit()" class="form">
+  <div class="form-row">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Type de demande</mat-label>
+      <mat-select formControlName="requestType">
+        @for (request of RequestTypeList(); track request) {
+        <mat-option [value]="request">{{ request.typeDocument }}</mat-option>
+        }
+      </mat-select>
+
+      @if(portabilityForm.get('requestType')?.invalid){
+      <mat-error>{{ getErrorMessage("requestType") }} </mat-error>
+      }
+    </mat-form-field>
+  </div>
+  <div class="">
+    <app-ipeca-file-upload
+      title="Pièce(s) jointe(s) *"
+      (filesChanged)="onFilesChanged($event)"
+      [sectionName]="sectionName" />
+  </div>
+  <div class="form-actions">
+    <button
+      mat-raised-button
+      color="primary"
+      class="ipeca-primary"
+      type="submit">
+      TRANSMETTRE
+    </button>
+
+    <div class="info-text-required">*Champs obligatoires</div>
+  </div>
+  <app-beneficiary-cgu type="portability" />
+</form>

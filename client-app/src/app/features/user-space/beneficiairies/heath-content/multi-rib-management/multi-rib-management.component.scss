@@ -1,0 +1,96 @@
+@use "../../../../../../../../shared-library/src/lib/styles/variables" as *;
+
+* {
+  color: $table-text-color;
+}
+
+.title {
+  color: $preheader-bg-color;
+}
+
+h2 {
+  margin-top: 0;
+  padding-top: 0;
+  margin-bottom: 0px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+  border-radius: 8px;
+  color: $table-text-color;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+  // margin-block: 0.2rem;
+
+  mat-radio-button {
+    margin-bottom: 8px;
+
+    ::ng-deep .mat-radio-label-content {
+      line-height: 1.4;
+      padding-left: 8px;
+    }
+  }
+}
+
+.confirm-btn {
+  background-color: $preheader-bg-color;
+  text-transform: uppercase;
+  margin-top: 16px;
+}
+
+.howto {
+  padding-right: 10vw;
+  margin-top: 24px;
+}
+
+.subtitle {
+  text-transform: uppercase;
+  color: $table-text-color;
+  font-size: 1.8rem;
+  line-height: 19px;
+}
+
+.data-table {
+  margin-top: 1rem;
+}
+
+//table
+.full-width-table {
+  width: 100%;
+}
+
+.mat-elevation-z8 {
+  margin: 20px;
+  overflow-x: auto;
+}
+
+mat-icon {
+  font-size: 20px;
+}
+
+th.mat-header-cell {
+  font-weight: bold;
+  background-color: #f5f5f5;
+}
+
+td.mat-cell,
+th.mat-header-cell {
+  padding: 12px 16px;
+  text-align: left;
+  border-right: 1px solid #e0e0e0;
+
+  &:last-child {
+    border-right: none;
+  }
+}

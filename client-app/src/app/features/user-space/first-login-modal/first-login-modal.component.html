@@ -1,0 +1,23 @@
+<div
+  class="modal-container"
+  [style.background-color]="modalData?.formColor || '#003264'">
+  <div mat-dialog-title class="modal-title">
+    <span [innerHTML]="modalData?.htmlHeader || 'uhu'"></span>
+    <button
+      mat-icon-button
+      mat-dialog-close
+      class="close-btn"
+      aria-label="Fermer">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <mat-dialog-content class="modal-content">
+    <div [innerHTML]="modalData?.htmlBody"></div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end" class="modal-actions">
+    <mat-checkbox [(ngModel)]="dontShowAgain" class="dont-show-checkbox">
+      Ne plus afficher
+    </mat-checkbox>
+    <button mat-flat-button color="primary" (click)="onOkClick()">OK</button>
+  </mat-dialog-actions>
+</div>

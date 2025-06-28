@@ -1,0 +1,71 @@
+@use "../../../../../../shared-library/src/lib/styles/variables" as *;
+
+.modal-container {
+  max-width: 40vw;
+  background-color: $preheader-bg-color;
+}
+a {
+  color: $white;
+}
+h2,
+h3 {
+  margin: 0;
+}
+.modal-container h3 {
+  padding: 0;
+  margin: 0;
+}
+
+.close-btn {
+  margin-left: auto;
+}
+
+.modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  border-top: 1px solid;
+  font-size: 1rem;
+}
+:host::ng-deep {
+  &.modal-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $white;
+    padding-inline: 1rem;
+    border-bottom: 1px solid $white;
+    h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+  }
+  &.dont-show-checkbox {
+    .mdc-label {
+      // margin-right: auto;
+      color: $text-blue;
+    }
+    .mdc-checkbox__background {
+      border-color: $text-blue;
+    }
+    .mat-internal-form-field {
+      flex-direction: row-reverse;
+    }
+  }
+}
+
+.modal-content,
+.modal-actions {
+  color: $white;
+  padding-inline: 1rem;
+}
+:host::ng-deep {
+  .modal-content {
+    padding: 20px;
+    padding-inline: 1rem;
+    a {
+      color: $white;
+    }
+  }
+}

@@ -1,0 +1,96 @@
+@use "../../../../../../../../shared-library/src/lib/styles/variables" as *;
+.widget-list {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.guarantee-section {
+  background: #eaf4fb;
+  margin-top: 1.5rem;
+  box-sizing: border-box;
+  padding: 2rem 2rem;
+}
+
+.guarantee-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.guarantee-title {
+  font-weight: bold;
+  color: $preheader-bg-color;
+  font-size: 1.2rem;
+  font-family: "calibri-bold", Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.guarantee-link {
+  color: $btn-bg-color;
+  font-style: italic;
+  font-size: 1rem;
+  text-decoration: none;
+  font-family: "calibri", Arial, Helvetica, sans-serif;
+  transition: text-decoration 0.2s;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.guarantee-underline {
+  margin-top: 0.5rem;
+  height: 3px;
+  background: #003264;
+  width: 100%;
+  border-radius: 2px;
+}
+
+.guarantee-group {
+  margin-top: 1.5rem;
+}
+
+.guarantee-risque {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+  &.sante {
+    color: #00b6c9;
+  }
+  &.prevoyance {
+    color: #ff9800;
+  }
+}
+
+.guarantee-contract {
+  margin-bottom: 1.2rem;
+}
+
+.contract-title {
+  font-weight: bold;
+  color: #003264;
+  font-family: "calibri-bold", Arial, Helvetica, sans-serif;
+}
+
+.contract-desc {
+  display: flex;
+  align-items: center;
+  color: #003264;
+  font-size: 0.95rem;
+  margin-top: 0.1rem;
+  justify-content: space-between;
+  .download-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 8px;
+    color: #003264;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+  mat-icon {
+    font-size: 20px;
+  }
+}

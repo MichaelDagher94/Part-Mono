@@ -1,0 +1,9 @@
+<div class="container">
+  <lib-list-menu-sidebar
+    [items]="menuItems"
+    (onItemSelected)="onMenuSelected($event)" />
+
+  <div>
+    <router-outlet />
+  </div>
+</div>

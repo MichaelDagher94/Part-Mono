@@ -1,0 +1,23 @@
+@if(hasFilesToUpload()){
+<div class="banner-container">
+  <div [class]="hideIcon() ? '' : 'icon'">
+    <!-- <img src="assets/shared-library/help-icon-2x.png" alt="info" width="50%" /> -->
+  </div>
+  <div>
+    <div class="lists">
+      <div class="banner-title">{{ title() }}</div>
+      <div class="fileList">
+        @if(hideIcon()){ @for (file of filesToUpload(); track file) {
+        <p>{{ file }}</p>
+        } }@else {
+        <ul>
+          @for (file of filesToUpload(); track file) {
+          <li>{{ file }}</li>
+          }
+        </ul>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+}

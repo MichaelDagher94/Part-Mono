@@ -1,0 +1,20 @@
+@use "../../../../../../../../shared-library/src/lib/styles/variables" as *;
+
+.title {
+  color: $preheader-bg-color;
+  margin-bottom: 0;
+  padding: 10px 0;
+}
+h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.text {
+  font-size: $font-size-md;
+  color: $table-text-color;
+  line-height: 21px;
+  margin-block: $spacing-md;
+  margin-top: 0;
+  max-width: 50vw;
+}

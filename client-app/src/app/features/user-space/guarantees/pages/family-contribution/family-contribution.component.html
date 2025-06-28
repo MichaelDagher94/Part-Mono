@@ -1,0 +1,207 @@
+<div class="container">
+  <h2 class="title">Adhérer à la couverture famille</h2>
+
+  @if (contribution()) {
+  <!-- Résiliation -->
+  @if (isResiliation) {
+  <span class="text">{{ resiliationMessage }}</span>
+  <br /><br />
+  <span class="text">
+    Toute résiliation entraine l’impossibilité de s’affilier à nouveau avant un
+    délai d’un an à compter de la date de résiliation. Toutefois, vous avez la
+    faculté de demander à affilier vos ayants-droit sans devoir respecter ce
+    délai d’un an en cas de changement de situation de famille.
+  </span>
+  <br /><br />
+  }
+
+  <!-- description -->
+  @if(isCurrentFamilyContrat){
+  <span
+    class="innerHtml-class"
+    #descriptionContainer
+    [innerHTML]="contribution()?.description"></span>
+  <br /><br />
+  @if(contribution().libelle){
+  <span class="innerHtml-class" [innerHTML]="contribution()?.libelle"></span>
+  <br /><br />
+  } }
+
+  <!-- Raison d'adhésion -->
+  @if(adhesionCondition){
+  <span>{{ adhesionReason }}</span>
+  }
+
+  <!-- Résiliation future -->
+  @if (isFutureResiliation) {
+  <span>
+    Votre demande de résiliation a bien été prise en compte et sera effective le
+    {{ contribution().dateResiliation | date : "dd/MM/yyyy" }}
+  </span>
+  }
+
+  <!-- Adhésion ou réadhésion -->
+  @if (isAdhesionReAdhesion) {
+  <h3 class="subtitle align-center">
+    Veuillez nous préciser les raisons de votre adhésion :
+    <mat-icon [matTooltip]="adhesionReasonTooltip" class="bg-pink"
+      >help</mat-icon
+    >
+  </h3>
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="form">
+    @if(isAdhesion){
+    <div class="form-row form-radio">
+      <mat-radio-group
+        color="primary"
+        formControlName="choice"
+        class="radio-group">
+        <!-- One -->
+        <mat-radio-button
+          [value]="ERaisonAdhesionParticipant.One"
+          class="radio-option">
+          <span class="text title">
+            J'ai rejoint l'entreprise il y a moins de 2 mois et mon contrat
+            prendra effet à ma date d'embauche, le
+            {{
+              this.currentParticipant().dateEntreEntreprise
+                | date : "dd/MM/yyyy"
+            }}
+          </span>
+        </mat-radio-button>
+
+        <!-- Two -->
+
+        <mat-radio-button
+          [value]="ERaisonAdhesionParticipant.Two"
+          class="radio-option">
+          <span class="text title">
+            Ma situation familiale a évolué il y a moins de 2 mois, et mon
+            contrat prendra effet à la date de ce changement :
+          </span>
+        </mat-radio-button>
+
+        <mat-form-field appearance="outline" class="full-width half-width">
+          <mat-label>Date d'adhesion</mat-label>
+          <mat-select formControlName="dateChoiceFamille">
+            @for (dateChoice of dateChoices; track dateChoice) {
+            <mat-option [value]="dateChoice">{{
+              dateChoice | date : "MMMM yyyy"
+            }}</mat-option>
+            }
+          </mat-select>
+          <mat-icon
+            matSuffix
+            [matTooltip]="raisonAdhesionParticipantTwoTooltip"
+            class="bg-pink"
+            matTooltipClass="custom-tooltip"
+            >help</mat-icon
+          >
+        </mat-form-field>
+
+        <!-- three -->
+        <br />
+        <mat-radio-button
+          [value]="ERaisonAdhesionParticipant.Three"
+          class="radio-option">
+          <span class="text title">
+            Je souhaite adhérer en cours d’année : mon contrat prendra alors
+            effet le 1<sup>er</sup> jour du mois qui suit ma demande.
+          </span>
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+    } @if(isReAdhesion){
+    <div class="form-row form-radio">
+      <mat-radio-group
+        color="primary"
+        formControlName="choice"
+        class="radio-group">
+        <!-- Bouton radio pour Famille -->
+        <mat-radio-button
+          [value]="ERaisonAdhesionParticipant.Four"
+          class="radio-option">
+          <span class="text title">
+            Je souhaite adhérer à nouveau après un délai d’un an. Mon contrat
+            prendra alors effet à partir de :
+          </span>
+        </mat-radio-button>
+
+        <mat-form-field appearance="outline" class="full-width half-width">
+          <mat-label>Date d'adhesion</mat-label>
+          <mat-select formControlName="dateChoiceFamille">
+            @for (dateChoice of dateChoices; track dateChoice) {
+            <mat-option [value]="dateChoice">{{
+              dateChoice | date : "MMMM yyyy"
+            }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Bouton radio pour Isolé -->
+        <mat-radio-button
+          [value]="ERaisonAdhesionParticipant.Five"
+          class="radio-option">
+          <span class="text title">
+            Ma situation familiale a évolué il y a moins d’un an, et mon contrat
+            prendra effet à la date de ce changement :
+          </span>
+        </mat-radio-button>
+
+        <mat-form-field appearance="outline" class="full-width half-width">
+          <mat-label>Date d'adhesion</mat-label>
+          <mat-select formControlName="dateChoiceIsole">
+            @for (dateChoice of dateChoices; track dateChoice) {
+            <mat-option [value]="dateChoice">{{
+              dateChoice | date : "MMMM yyyy"
+            }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </mat-radio-group>
+    </div>
+    }
+
+    <div class="form-row checkbox-section">
+      <div class="checkbox-value">
+        <mat-checkbox color="primary" formControlName="adhesionReason">
+          <span class="text title"
+            >J’adhère à la couverture famille et accepte le prélèvement de la
+            cotisation correspondante par mon employeur.</span
+          >
+        </mat-checkbox>
+        @if(formGroup.get('adhesionReason')?.invalid &&
+        formGroup.get('adhesionReason')?.touched ){
+        <mat-error>Veuillez confirmer votre adhésion</mat-error>
+        }
+      </div>
+    </div>
+
+    <p class="text">
+      Vous pouvez renoncer dans un délai de 30 jours par tout support durable
+      (lettre simple, lettre recommandée avec avis de réception, mail) la
+      mention suivante : « Je soussigné(e), (nom, prénom, adresse) souhaite
+      renoncer à l’affiliation de mes ayants droit (nom, prénom, adresse) au
+      contrat frais de santé (numéro de contrat) souscrit par mon entreprise
+      (raison sociale, adresse) » datée et signée.
+    </p>
+    <div class="form-actions">
+      <button
+        mat-raised-button
+        color="primary"
+        class="ipeca-primary"
+        type="submit">
+        ENREGISTRER
+      </button>
+    </div>
+    <app-beneficiary-cgu type="cotisation" />
+  </form>
+  } } @else {
+  <!-- Erreur technique -->
+  <div>
+    Un problème technique nous empêche temporairement d'identifier le statut de
+    votre adhésion à la cotisation famille.<br />
+    En attendant sa résolution, vous pouvez nous contacter via notre page :
+    <a href="~/contactez-nous">https://www.ipeca.fr/contactez-nous</a>.
+  </div>
+  }
+</div>

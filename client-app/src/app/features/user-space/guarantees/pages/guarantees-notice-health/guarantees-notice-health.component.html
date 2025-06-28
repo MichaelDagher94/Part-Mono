@@ -1,0 +1,41 @@
+<div class="container">
+  <h2 class="title">Mes notices santé</h2>
+  @if(noticeList().length>0){
+  <p class="text">
+    Pour votre protection sociale, votre employeur a mis en place un contrat
+    collectif et obligatoire auprès d'IPECA PREVOYANCE. Votre notice
+    d'information a pour objet de vous communiquer toutes les informations
+    utiles sur les garanties, dont vous bénéficiez, dans le cadre de votre
+    régime frais de santé.
+  </p>
+  }
+
+  <mat-accordion>
+    @for (group of noticeList(); track group) {
+    <mat-expansion-panel>
+      <mat-expansion-panel-header class="panel-header">
+        <mat-panel-title class="title main-title">
+          {{ group.codeRegroupement }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      @for (item of group.items; track item) {
+      <div class="panel-content">
+        <div class="grid-container">
+          <div class="text-column">
+            <span>{{ item.libelle }}</span>
+            <button mat-icon-button type="button" (click)="download(item)">
+              <mat-icon>save_alt</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+      }
+    </mat-expansion-panel>
+    } @empty {
+    <p class="text info-text">
+      Vos notices ne sont pas disponibles pour le moment, veuillez vous
+      rapprocher de nos services de gestion.
+    </p>
+    }
+  </mat-accordion>
+</div>

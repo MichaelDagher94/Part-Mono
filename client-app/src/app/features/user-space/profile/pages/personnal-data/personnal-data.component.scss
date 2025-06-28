@@ -1,0 +1,55 @@
+@use "../../../../../../../../shared-library/src/lib/styles/variables" as *;
+
+h2 {
+  margin: 0 0px;
+  color: $preheader-bg-color;
+}
+
+.subtitle {
+  color: $preheader-bg-color;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-block: 0.5rem 0px;
+}
+
+.container {
+  width: 40vw;
+  max-width: 600px;
+}
+
+.section {
+  padding-block: 1rem;
+}
+
+.icon-title {
+  border-bottom: 1px solid $footer-background-color;
+}
+
+.personel-data {
+  // max-width: 500px;
+}
+
+::ng-deep lib-item-list {
+  display: block;
+  margin-bottom: 0.5rem;
+
+  .item-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .item-key {
+    flex: 0 0 auto;
+    min-width: 180px;
+    max-width: 200px;
+  }
+
+  .item-value {
+    flex: 1;
+    text-align: left;
+    word-break: break-word;
+  }
+}

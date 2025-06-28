@@ -1,0 +1,75 @@
+.reimbursement-section {
+  background: #fafbfc;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.reimbursement-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reimbursement-title {
+  font-weight: bold;
+  color: #003264;
+  font-size: 1.2rem;
+  font-family: "calibri-bold", Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+}
+
+.reimbursement-link {
+  color: #b0006d;
+  font-style: italic;
+  font-size: 1rem;
+  text-decoration: none;
+  font-family: "calibri", Arial, Helvetica, sans-serif;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.reimbursement-underline {
+  margin-top: 0.5rem;
+  height: 2px;
+  background: #003264;
+  width: 100%;
+  border-radius: 2px;
+}
+
+.reimbursement-table {
+  width: 100%;
+  margin-top: 1rem;
+  background: #fff;
+  th,
+  td {
+    background: #fff6fa;
+    color: #003264;
+    font-family: "calibri", Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  th {
+    font-weight: bold;
+    background: #fafbfc;
+    color: #003264;
+  }
+  td {
+    vertical-align: middle;
+  }
+  tr:last-child td {
+    border-bottom: none;
+  }
+  button[mat-icon-button] {
+    color: #003264;
+  }
+}
+.no-data {
+  padding-top: 1rem;
+}
+
+.empty-msg {
+  font-size: 16px;
+  color: #707070;
+  line-height: 21px;
+}

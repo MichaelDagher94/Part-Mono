@@ -1,0 +1,10 @@
+@use "../../../../../../shared-library/src/lib/styles/variables" as *;
+.container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: $spacing-md;
+  grid-row-gap: 0px;
+  padding-block: $spacing-md;
+}
+

@@ -1,0 +1,16 @@
+<div class="container">
+  <lib-custom-tabs (selectedTabChangeEvent)="eventTabChange($event)">
+    <div sante>
+      <app-beneficiary-heath-content
+        (onItemSelected)="handleHealthSubmenuSelected($event)" />
+    </div>
+    <div prevoyance>
+      <app-foresight-beneficiary
+        (onItemSelected)="handleHealthSubmenuSelected($event)" />
+    </div>
+  </lib-custom-tabs>
+
+  <div>
+    <router-outlet />
+  </div>
+</div>

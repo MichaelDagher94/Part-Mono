@@ -1,0 +1,66 @@
+<div class="container">
+  <h2>Données personnelles</h2>
+
+  <lib-item-list [itemkey]="'Numéro de participant'" [itemValue]="currentParticipant().numeroParticipant" />
+
+  <h3 class="subtitle">
+    Mes coordonnées
+    <button mat-icon-button (click)="handleEdit()">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </h3>
+
+  <div class="section">
+    <div class="icon-title"><mat-icon>person</mat-icon></div>
+    <div class="personel-data">
+      <lib-item-list itemkey="Nom & prénom" [itemValue]="
+          currentParticipant().civilite +
+          ' ' +
+          currentParticipant().prenom +
+          ' ' +
+          currentParticipant().nom
+        " />
+
+      <lib-item-list itemkey="Date de naissance" [itemValue]="currentParticipant().dateNaissance" />
+
+      <lib-item-list itemkey="Numéro de sécurité sociale" [itemValue]="currentParticipant().numeroSecuriteSociale" />
+
+      <lib-item-list itemkey="Situation familiale" [itemValue]="currentParticipant().situationFamiliale" />
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="icon-title"><mat-icon>home</mat-icon></div>
+    <div class="personel-data">
+      @if (currentParticipant().adresse.adresse1) {
+      <lib-item-list [itemkey]="'Adresse'" [itemValue]="currentParticipant().adresse.adresse1" />
+      } @if (currentParticipant().adresse.adresse2) {
+      <lib-item-list [itemkey]="'Adresse (suite)'" [itemValue]="currentParticipant().adresse.adresse2" />
+      } @if (currentParticipant().adresse.adresse3) {
+      <lib-item-list [itemkey]="
+          currentParticipant().adresse.adresse1 ||
+          currentParticipant().adresse.adresse2
+            ? 'Adresse (suite)'
+            : 'Adresse'
+        " [itemValue]="currentParticipant().adresse.adresse3" />
+      }
+
+      <lib-item-list [itemkey]="'Code postal & ville'" [itemValue]="
+          currentParticipant().adresse.codePostal +
+          ' ' +
+          currentParticipant().adresse.ville
+        " />
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="icon-title"><mat-icon>phone</mat-icon></div>
+    <div class="personel-data">
+      @if (currentParticipant().telephone) {
+      <lib-item-list [itemkey]="'Téléphone fixe'" [itemValue]="currentParticipant().telephone" />
+      } @if (currentParticipant().telephonePortable) {
+      <lib-item-list [itemkey]="'Téléphone portable'" [itemValue]="currentParticipant().telephonePortable" />
+      }
+    </div>
+  </div>
+</div>

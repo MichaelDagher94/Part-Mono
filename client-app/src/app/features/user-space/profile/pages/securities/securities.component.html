@@ -1,0 +1,22 @@
+<div class="container">
+  <h2>Connexion et sécurité</h2>
+
+  <div class="section">
+    <h3 class="subtitle">
+      ADRESSE E-MAIL
+      <button mat-icon-button (click)="handleEditEmail()">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </h3>
+    <p class="text">{{ currentParticipant().email }}</p>
+  </div>
+  <div class="section">
+    <h3 class="subtitle">
+      MOT DE PASSE
+      <button mat-icon-button (click)="handleEditPassword()">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </h3>
+    <p class="text">**********</p>
+  </div>
+</div>

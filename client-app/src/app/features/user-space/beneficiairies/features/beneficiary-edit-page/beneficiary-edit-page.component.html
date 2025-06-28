@@ -1,0 +1,232 @@
+<h2 class="title">Modification d'un bénéficiaire</h2>
+<div class="text">
+  Vous souhaitez modifier des informations concernant votre bénéficiaire, pour
+  ce faire, nous vous proposons de vous laisser guider pour remplir le
+  formulaire ci-dessous.
+</div>
+
+<form
+  [formGroup]="beneficiaryForm"
+  (ngSubmit)="onSubmit()"
+  class="beneficiary-form">
+  <div class="form-row">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Motif de la modification</mat-label>
+      <mat-select
+        formControlName="reason"
+        (selectionChange)="onReasonSelected($event)">
+        @for (motive of reasonList(); track motive) {
+        <mat-option [value]="motive">{{ motive.typeDocument }}</mat-option>
+        }
+      </mat-select>
+      <mat-icon *ngIf="false" matSuffix class="info-icon" [matTooltip]="motiveInfo"
+        >info</mat-icon>
+      @if(beneficiaryForm.get('reason')?.invalid){
+      <mat-error>{{ getErrorMessage("reason") }} </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Date de la modification </mat-label>
+      <input
+        appAutofocus
+        matInput
+        placeholder="JJ/MM/AAAA"
+        dateInputMask
+        [matDatepicker]="pickerCurrentDate"
+        formControlName="updateDate"
+        required />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="pickerCurrentDate"></mat-datepicker-toggle>
+      <mat-datepicker #pickerCurrentDate></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="form-row rattached">
+    <div class="labeled-icon">
+      <mat-label class="subtitle">Lien de parenté *</mat-label>
+    </div>
+
+    <span>{{ currentBeneficiary()?.rang.label }}</span>
+  </div>
+
+  <!-- Genre -->
+  <div class="form-row form-radio">
+    <mat-label class="subtitle">Genre *</mat-label>
+    <mat-radio-group
+      color="primary"
+      formControlName="gender"
+      class="radio-group">
+      @for (gender of genders; track gender) {
+      <mat-radio-button [value]="gender.key" class="radio-option">
+        {{ gender.value }}
+      </mat-radio-button>
+      }
+    </mat-radio-group>
+  </div>
+
+  <!-- Nom / Prénom -->
+  <div class="form-row">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nom</mat-label>
+      <input
+        matInput
+        formControlName="lastName"
+        required
+        [maxlength]="maxName" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Prénom </mat-label>
+      <input
+        matInput
+        formControlName="firstName"
+        required
+        [maxlength]="maxFirstName" />
+    </mat-form-field>
+  </div>
+
+  <!-- Date de naissance / Numéro de sécurité sociale -->
+  <div class="form-row">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Date de naissance </mat-label>
+      <input
+        matInput
+        placeholder="JJ/MM/AAAA"
+        dateInputMask
+        [matDatepicker]="picker"
+        formControlName="birthDate"
+        required />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      @if(beneficiaryForm.get('birthDate')?.invalid){
+      <mat-error>{{ getErrorMessage("birthDate") }} </mat-error>
+      }
+    </mat-form-field>
+
+    @if(isAdult()) {
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Numéro de sécurité sociale </mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="X XX XX XX XXX XXX XX"
+        formControlName="socialSecurityNumber"
+        [mask]="SSN_MASK"
+        [showMaskTyped]="true"
+        required />
+      <mat-icon matSuffix class="info-icon" [matTooltip]="nssInfo"
+        >info</mat-icon
+      >
+      @if(beneficiaryForm.get('socialSecurityNumber')?.invalid){
+      <mat-error>{{ getErrorMessage("socialSecurityNumber") }} </mat-error>
+      }
+    </mat-form-field>
+    }
+  </div>
+
+  @if(!isAdult()){
+
+  <div class="form-row rattached">
+    <div class="labeled-icon subtitle">
+      <mat-label
+        >Rattachement Sécurité sociale du bénéficiaire (s’il est
+        mineur)</mat-label
+      ><mat-icon matSuffix class="info-icon" [matTooltip]="rattachementInfo"
+        >info</mat-icon
+      >
+    </div>
+
+    <span
+      >Veuillez renseigner le numéro de Sécurité sociale du/des
+      parent(s)...</span
+    >
+  </div>
+
+  <div class="form-row">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Numéro de Sécurité sociale du parent 1</mat-label>
+      <input matInput formControlName="parent1Ssn" [mask]="SSN_MASK" />
+      <mat-icon matSuffix class="info-icon" [matTooltip]="nssInfo"
+        >info</mat-icon
+      >
+    </mat-form-field>
+  </div>
+  <div class="form-row">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Numéro de Sécurité sociale du parent 2</mat-label>
+      <input matInput formControlName="parent2Ssn" [mask]="SSN_MASK" />
+      <mat-icon matSuffix class="info-icon" [matTooltip]="nssInfo"
+        >info</mat-icon
+      >
+    </mat-form-field>
+  </div>
+  }
+  <div class="form-row form-radio">
+    <mat-label class="subtitle">
+      Statut de la télétransmission avec IPECA</mat-label
+    >
+    <div class="statut-btn">
+      {{
+        beneficiaryForm.get("teletransmission")?.value ? "Activé" : "Désactivé"
+      }}
+      <button
+        type="button"
+        mat-button
+        color="primary"
+        [disabled]="!isBtnTeletransmissionEnabled"
+        (click)="onTeleTransmissionChange()"
+        class="btn-tt">
+        Modifier
+      </button>
+    </div>
+  </div>
+  @if(showTeletransmission){
+  <div class="form-row form-radio">
+    <mat-label class="subtitle">
+      Souhaitez-vous activer la Télétransmission entre la Sécurité Sociale et
+      IPECA pour ce bénéficiaire ?</mat-label
+    >
+    <mat-radio-group
+      color="primary"
+      formControlName="teletransmission"
+      class="radio-group">
+      <mat-radio-button [value]="1" class="radio-option">
+        Activé
+      </mat-radio-button>
+      <mat-radio-button [value]="0" class="radio-option">
+        Désactivé
+      </mat-radio-button>
+    </mat-radio-group>
+    @if(beneficiaryForm.get('teletransmission')?.invalid){
+    <mat-error>{{ getErrorMessage("teletransmission") }} </mat-error>
+    }
+  </div>
+  }
+
+  <div class="">
+    <app-ipeca-file-upload
+      title="Pièce(s) justificative(s) obligatoire(s) *"
+      (filesChanged)="onFilesChanged($event)"
+      [sectionName]="sectionName">
+      <app-beneficiary-info-banner
+        [title]="infoBannerTitle() || ''"
+        [filesToUpload]="requiredDocuments()"
+    /></app-ipeca-file-upload>
+  </div>
+
+  <!-- Bouton de soumission -->
+  <div class="form-actions">
+    <button
+      mat-raised-button
+      color="primary"
+      class="ipeca-primary"
+      type="submit">
+      VALIDER
+    </button>
+
+    <div class="info-text-required">*Champs obligatoires</div>
+  </div>
+  <app-beneficiary-cgu />
+</form>

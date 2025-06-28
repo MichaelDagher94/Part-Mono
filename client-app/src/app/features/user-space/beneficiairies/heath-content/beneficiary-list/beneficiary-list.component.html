@@ -1,0 +1,21 @@
+<h2 class="title">Liste des bénéficiaires</h2>
+
+@let state = (beneficiaryListState$ | async); @if (state && state.loading) {
+<lib-skeleton-table-loader />
+} @if (state && state.error) {
+<i class="error-msg"
+  >Une erreur technique nous empêche de charger la liste de vos bénéficiaires,
+  veuillez réessayer ultérieurement.</i
+>
+} @else {
+<lib-custom-table
+  [data]="dataToShow"
+  [displayedColumns]="columns"
+  [columnTitles]="columnTitles"
+  [detailColumn]="'rang'"
+  [showPagination]="false"
+  (onDownload)="handleDownload($event)"
+  [isFromSanteListe]="true"
+  (onEdit)="handleEdit($event)"
+  (onDelete)="handleDelete($event)" />
+}

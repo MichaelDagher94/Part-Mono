@@ -1,0 +1,57 @@
+<div class="reimbursement-section">
+  <div class="reimbursement-header">
+    <span class="reimbursement-title">{{ reimbursmentTitle }}</span>
+    <a class="reimbursement-link" [href]="reimbursmentLink">{{
+      reimbursmentSubtitle
+    }}</a>
+  </div>
+  <div class="reimbursement-underline"></div>
+
+  @let state = (refundListState$ | async); @if (state && state.loading) {
+  <lib-skeleton-table-loader />
+  }@else { @if ((reimbursmentList$ | async)?.length > 0) {
+  <table
+    mat-table
+    [dataSource]="reimbursmentList$"
+    class="mat-elevation-z0 reimbursement-table">
+    <!-- Date Column -->
+    <ng-container matColumnDef="dateRemboursementComplete">
+      <th mat-header-cell *matHeaderCellDef>Date de remboursement</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.dateRemboursementComplete | date : "dd/MM/yyyy" }}
+      </td>
+    </ng-container>
+
+    <!-- Amount Column -->
+    <ng-container matColumnDef="montantVerseIpeca">
+      <th mat-header-cell *matHeaderCellDef>Montant versé<br />par IPECA</th>
+      <td mat-cell *matCellDef="let element">
+        <b>{{ element.montantVerseIpeca | number : "1.2-2" }} €</b>
+      </td>
+    </ng-container>
+
+    <!-- libelle Column -->
+    <ng-container matColumnDef="libelle">
+      <th mat-header-cell *matHeaderCellDef>Bénéficiaire</th>
+      <td mat-cell *matCellDef="let element">{{ element.libelle }}</td>
+    </ng-container>
+
+    <!-- Download Column -->
+    <ng-container matColumnDef="download">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button (click)="download(element)">
+          <mat-icon>save_alt</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  }@else {
+  <div class="no-data">
+    <span class="empty-msg">{{ emptyMsg }}</span>
+  </div>
+  } }
+</div>

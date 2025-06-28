@@ -1,0 +1,35 @@
+<div class="container">
+  <h2>Coordonnées bancaires</h2>
+  <p class="text">
+    Les coordonnées bancaires sont indispensables pour recevoir vos prestations
+    santé. Pour nous fournir ou vérifier les informations listées ci-dessous,
+    merci de vous munir de votre relevé de coordonnées bancaires
+  </p>
+
+  <h3 class="subtitle">
+    MES COORDONNÉES BANCAIRES
+    <button mat-icon-button (click)="handleEdit()">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </h3>
+
+  <!-- personal -->
+  <div class="section">
+    <div>
+      <lib-item-list
+        itemkey="Domiciliation:"
+        [itemValue]="currentParticipant().domiciliation" />
+      <hr class="divider" />
+      <lib-item-list
+        itemkey="Titulaire du compte:"
+        [itemValue]="currentParticipant().titulaire" />
+      <hr class="divider" />
+      <lib-item-list itemkey="IBAN:" [itemValue]="currentParticipant().iban" />
+      <hr class="divider" />
+      <lib-item-list
+        itemkey="BIC/SWIFT:"
+        [itemValue]="currentParticipant().bic" />
+      <hr class="divider" />
+    </div>
+  </div>
+</div>

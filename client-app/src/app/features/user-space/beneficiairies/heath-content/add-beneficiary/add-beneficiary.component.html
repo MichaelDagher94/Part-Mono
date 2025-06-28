@@ -1,0 +1,22 @@
+<h2 class="title">Ajouter un bénéficiaire</h2>
+@let state = (loadingState$ | async); @if (state && state.loading) {
+<lib-skeleton-table-loader />
+}@else { @if(!isFamilyContribution){
+<div class="text">
+  Vous souhaitez faire bénéficier un membre de votre famille de votre couverture
+  frais de santé : pour ce faire, nous vous proposons de vous laisser guider
+  pour remplir le formulaire ci-dessous.
+</div>
+<app-beneficary-add-form
+  (onFormValid)="handleFormValidation($event)"
+  [sectionName]="sectionName" />
+
+}@else {
+<div class="text">
+  Vous souhaitez faire bénéficier un membre de votre famille de votre couverture
+  frais de santé : pour ce faire, vous devez d'abord
+  <a href="/mes-garanties/sante/cotisation-famille"
+    >adhérer à la couverture famille.</a
+  >
+</div>
+} }

@@ -1,0 +1,88 @@
+<div class="container">
+  <h4>Filtrer mes remboursements par</h4>
+  <form [formGroup]="filterForm" class="filter-form-container">
+    <!-- BÉNÉFICIAIRE -->
+    <lib-custom-select
+      label="Bénéficiaire"
+      formControlName="beneficiary"
+      [options]="beneficiaries" />
+
+    <!-- NATURE DES SOINS -->
+    <lib-custom-select
+      label="Nature des soins"
+      formControlName="careType"
+      [options]="careTypes" />
+
+    <!-- DATE DE SOIN -->
+    <mat-form-field appearance="outline">
+      <mat-label>Date des soins</mat-label>
+      <mat-date-range-input [rangePicker]="pickerSoin">
+        <input
+          matStartDate
+          dateInputMask
+          formControlName="careDateFrom"
+          placeholder="Date de début"
+          (dateChange)="checkValidation()" />
+        <input
+          matEndDate
+          dateInputMask
+          formControlName="careDateTo"
+          placeholder="Date de fin"
+          mask="d0/00/0000"
+          (dateChange)="checkValidation()" />
+      </mat-date-range-input>
+      <mat-hint align="start">JJ/MM/AAAA - JJ/MM/AAAA</mat-hint>
+
+      <!-- Messages d'erreur -->
+      @if (careDateError()) {
+      <mat-error>{{ careDateError() }}</mat-error>
+      }
+
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="pickerSoin"></mat-datepicker-toggle>
+      <mat-date-range-picker #pickerSoin></mat-date-range-picker>
+    </mat-form-field>
+
+    <!-- DATE DE REMBOURSEMENT -->
+    <mat-form-field appearance="outline">
+      <mat-label>Date des remboursements</mat-label>
+      <mat-date-range-input [rangePicker]="pickerRemboursement">
+        <input
+          matStartDate
+          dateInputMask
+          formControlName="reimbursementDateFrom"
+          placeholder="Date de début"
+          (dateChange)="checkValidation()" />
+        <input
+          matEndDate
+          dateInputMask
+          formControlName="reimbursementDateTo"
+          placeholder="Date de fin"
+          (dateChange)="checkValidation()" />
+      </mat-date-range-input>
+      <mat-hint align="start">JJ/MM/AAAA - JJ/MM/AAAA</mat-hint>
+
+      @if (reimbursementDateError()) {
+      <mat-error>{{ reimbursementDateError() }}</mat-error>
+      }
+
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="pickerRemboursement"></mat-datepicker-toggle>
+      <mat-date-range-picker #pickerRemboursement></mat-date-range-picker>
+    </mat-form-field>
+
+    <!-- BUTTON -->
+    <div class="form-action-buttons">
+      <button mat-flat-button class="search-button" (click)="onSubmit()">
+        RECHERCHER
+      </button>
+      @if (filterForm.touched) {
+      <button mat-flat-button class="reset-button" (click)="filterForm.reset()">
+        Réinitialiser les filtres
+      </button>
+      }
+    </div>
+  </form>
+</div>

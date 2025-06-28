@@ -1,0 +1,80 @@
+<div class="container">
+  <h2>Coordonnées bancaires</h2>
+  <p class="text">
+    Les coordonnées bancaires sont indispensables pour recevoir vos prestations
+    santé. Pour nous fournir ou vérifier les informations listées ci-dessous,
+    merci de vous munir de votre relevé de coordonnées bancaires
+  </p>
+
+  <form [formGroup]="dataForm" (ngSubmit)="onSubmit()" class="beneficiary-form">
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width" color="primary">
+        <mat-label>Domiciliation</mat-label>
+        <input
+          appAutoFocus
+          matInput
+          formControlName="domiciliation"
+          [maxlength]="domiciliationMaxChar" />
+        @if(dataForm.get('domiciliation')?.invalid){
+        <mat-error>{{ getErrorMessage("domiciliation") }} </mat-error>
+        }
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width" color="primary">
+        <mat-label>Titulaire du compte </mat-label>
+        <input
+          matInput
+          formControlName="titulaire"
+          [maxlength]="titulaireMaxChar" />
+        @if(dataForm.get('titulaire')?.invalid){
+        <mat-error>{{ getErrorMessage("titulaire") }} </mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width" color="primary">
+        <mat-label>IBAN</mat-label>
+        <input matInput formControlName="iban" [maxlength]="ibanMaxChar" />
+        @if(dataForm.get('iban')?.invalid){
+        <mat-error>{{ getErrorMessage("iban") }} </mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width" color="primary">
+        <mat-label>BIC/SWIFT</mat-label>
+        <input
+          matInput
+          formControlName="bicwsift"
+          [maxlength]="bicwsiftMaxChar" />
+        @if(dataForm.get('bicwsift')?.invalid){
+        <mat-error>{{ getErrorMessage("bicwsift") }} </mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <app-ipeca-file-upload
+      (filesChanged)="onFilesChanged($event)"
+      [sectionName]="sectionName"
+      ><app-beneficiary-info-banner
+        [title]="''"
+        [filesToUpload]="requiredDocuments"
+    /></app-ipeca-file-upload>
+
+    <div class="form-actions">
+      <button
+        mat-raised-button
+        color="primary"
+        class="ipeca-primary"
+        type="submit">
+        MODIFIER
+      </button>
+
+      <div class="info-text-required">*Champs obligatoires</div>
+    </div>
+    <app-beneficiary-cgu type="profil" />
+  </form>
+</div>

@@ -1,0 +1,11 @@
+<h2 class="title">Mes Cartes de Tiers payant</h2>
+
+<lib-custom-table
+  [data]="tierPayantList() ?? []"
+  [emptyMsg]="''"
+  [displayedColumns]="columns"
+  [columnTitles]="columnTitles"
+  (onDownload)="handleDownload($event)"
+  [showPagination]="false"
+  [showEditActions]="false"
+  [showDeleteActions]="false" />

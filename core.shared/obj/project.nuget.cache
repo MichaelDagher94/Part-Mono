@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "qzGwG9IoMqw=",
+  "success": true,
+  "projectFilePath": "/home/vsts/work/1/s/Core.Shared/Core.Shared.csproj",
+  "expectedPackageFiles": [
+    "/home/vsts/.nuget/packages/mtt/0.7.2/mtt.0.7.2.nupkg.sha512"
+  ],
+  "logs": []
+}

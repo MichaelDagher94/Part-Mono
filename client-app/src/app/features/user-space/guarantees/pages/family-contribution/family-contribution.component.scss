@@ -1,0 +1,149 @@
+@use "@angular/material" as mat;
+@use "../../../../../../../../shared-library/src/lib/styles/variables" as *;
+@use "sass:color";
+.container {
+  width: 50vw;
+}
+.innerHtml-class {
+  color: $table-text-color;
+}
+.innerHtml-class a {
+  text-decoration: none;
+  color: $preheader-bg-color;
+}
+::ng-deep .innerHtml-class span a {
+  text-decoration: none;
+  color: $preheader-bg-color;
+}
+h2,
+h3 {
+  margin-block: 0 10px;
+}
+.main-title {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.info-text {
+  font-style: italic;
+}
+.subtitle {
+  color: $table-text-color;
+  font-weight: 600;
+  align-content: center;
+}
+
+.text {
+  font-size: $font-size-md;
+  color: $table-text-color;
+  line-height: 21px;
+  margin-block: $spacing-md;
+  max-width: 50vw;
+  a {
+    text-decoration: none;
+    color: $preheader-bg-color;
+
+    &:nth-of-type(1) {
+      font-weight: bold;
+    }
+    &:nth-of-type(2) {
+      font-style: italic;
+    }
+  }
+}
+::ng-deep .custom-tooltip-html .mat-tooltip {
+  white-space: normal;
+  max-width: 300px;
+  line-height: 1.4;
+}
+.custom-tooltip {
+  white-space: pre-line;
+  font-size: 14px;
+  padding: 10px;
+  color: white;
+  max-width: 300px;
+  line-height: 1.5;
+}
+
+.title {
+  color: $preheader-bg-color !important;
+  margin: 10px 0;
+}
+.full-width {
+  width: 100%;
+  margin-block: 0.5rem;
+}
+.half-width {
+  width: 50%;
+  margin-left: 2rem;
+}
+.form-row {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.text {
+  font-size: $font-size-md;
+  color: $table-text-color;
+  line-height: 21px;
+  margin-block: $spacing-md;
+}
+.radio-option {
+  display: flex;
+  align-items: flex-start;
+  margin-block: 0.5rem;
+  margin-left: 0.5rem;
+}
+.ipeca-primary {
+  background-color: $preheader-bg-color;
+  font-family: "Calibri-Bold";
+  font-weight: 500;
+  color: $white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  // États
+  &:hover:not(:disabled) {
+    background-color: $btn-bg-color;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  // Version disabled
+  &:disabled {
+    background-color: color.scale($preheader-bg-color, $lightness: -10%);
+    color: rgba($white, 0.5);
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  // Version avec icône
+  &.with-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+.bg-pink {
+  color: $btn-bg-color;
+}
+.align-center {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.align-center mat-icon {
+  font-size: 20px;
+  vertical-align: middle;
+}

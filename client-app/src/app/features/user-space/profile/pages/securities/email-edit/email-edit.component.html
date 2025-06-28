@@ -1,0 +1,60 @@
+<div class="container">
+  <h2>Connexion et sécurité</h2>
+  <h3>ADRESSE E-MAIL</h3>
+  <p class="text">
+    Vous êtes sur le point de modifier votre adresse courriel. Compte- tenu de
+    la nature des données traitées par IPECA, nous vous recommandons d'utiliser
+    une adresse courriel qui vous est personnelle et dont vous maîtrisez
+    l'accès. Celle-ci servira d'identifiant pour vos prochaines connexions et à
+    vous transmettre des informations.
+  </p>
+
+  <form [formGroup]="dataForm" (ngSubmit)="onSubmit()" class="beneficiary-form">
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width" color="primary">
+        <mat-label>Adresse e-mail actuelle</mat-label>
+        <input matInput formControlName="oldEmail" [maxLength]="emailMaxChar" />
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width" color="primary">
+        <mat-label>Nouvelle adresse e-mail</mat-label>
+        <input 
+          appAutofocus
+          matInput 
+          formControlName="email" 
+          [maxLength]="emailMaxChar" />
+        @if(dataForm.get('email')?.invalid){
+        <mat-error>{{ getErrorMessage("email") }} </mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width" color="primary">
+        <mat-label>Confirmation du nouvel e-mail</mat-label>
+        <input
+          matInput
+          formControlName="confirmEmail"
+          [maxLength]="emailMaxChar" />
+        @if(dataForm.get('confirmEmail')?.invalid){
+        <mat-error>{{ getErrorMessage("confirmEmail") }} </mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div class="form-actions">
+      <button
+        mat-raised-button
+        color="primary"
+        class="ipeca-primary"
+        type="submit">
+        MODIFIER
+      </button>
+
+      <div class="info-text-required">*Champs obligatoires</div>
+    </div>
+    <app-beneficiary-cgu type="profil" />
+  </form>
+</div>

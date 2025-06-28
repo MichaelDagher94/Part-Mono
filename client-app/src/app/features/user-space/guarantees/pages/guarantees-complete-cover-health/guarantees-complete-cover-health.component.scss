@@ -1,0 +1,114 @@
+@use "@angular/material" as mat;
+@use "../../../../../../../../shared-library/src/lib/styles/variables" as *;
+@use "sass:color";
+.container {
+  width: 50vw;
+}
+.title {
+  color: $preheader-bg-color;
+  margin: 10px 0;
+}
+h2 {
+  margin-block: 0 10px;
+}
+.main-title {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.info-text {
+  font-style: italic;
+}
+.subtitle {
+  color: $preheader-bg-color;
+  font-weight: normal;
+  text-transform: lowercase;
+}
+.text {
+  font-size: $font-size-md;
+  color: $table-text-color;
+  line-height: 21px;
+  margin-block: $spacing-md;
+  max-width: 50vw;
+}
+.mat-expansion-panel-body {
+  padding-bottom: 40px;
+}
+.downloadable-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  span {
+    color: $preheader-bg-color;
+  }
+  .custom-button {
+    width: 20px;
+    height: 20px;
+  }
+}
+mat-accordion {
+  @include mat.expansion-overrides(
+    (
+      container-background-color: white,
+      container-text-color: $table-text-color
+    )
+  );
+}
+
+:host ::ng-deep .mat-mdc-icon-button.mat-mdc-button-base {
+  padding: 0;
+}
+:host ::ng-deep mat-expansion-panel {
+  border-bottom: 1px solid $preheader-bg-color;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  padding: 0;
+}
+:host ::ng-deep {
+  .mat-expansion-panel-header,
+  .mat-expansion-panel-header.mat-expanded {
+    // height: 1.5rem;
+    height: 48px;
+  }
+  .mat-expansion-panel-header.mat-expanded {
+    border-bottom: 1px solid;
+  }
+  .mat-expansion-panel-spacing {
+    margin: 0;
+  }
+}
+:host ::ng-deep .mat-expansion-panel-body {
+  padding: 0 20px 20px;
+}
+::ng-deep .mat-expansion-indicator {
+  color: $preheader-bg-color;
+}
+.panel-content {
+  .text-column {
+    font-size: 14px;
+    color: $preheader-bg-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 0.5rem;
+    padding-right: 2rem;
+  }
+
+  .radio-column .mat-mdc-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+.main-title {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.panel-header {
+  border-bottom: 1px solid $preheader-bg-color;
+}
+
+.small-icon {
+  font-size: 1rem;
+  width: 1rem;
+  height: 1rem;
+}

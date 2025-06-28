@@ -1,0 +1,24 @@
+<div class="main-container">
+  <section class="container">
+    <section class="actualityBox">
+      <h1>TOUTES LES actualités</h1>
+      <lib-headline-news [news]="headlineNews" />
+      <div class="news-list">
+        <lib-news [news]="headlineNews" />
+        <lib-news [news]="headlineNews" />
+        <lib-news [news]="headlineNews" />
+        <lib-news [news]="headlineNews" />
+      </div>
+    </section>
+    <section class="infoBox">
+      <div class="case-study-list">
+        <lib-case-study-news [news]="headlineNews" />
+        <lib-case-study-news [news]="headlineNews" />
+        <lib-media-text-overlay
+          [mediaPath]="'/assets/shared-library/media/637467666742440661.jpg'"
+          [title]="'particulier'"
+          [subtitle]="'Des garanties modulables pour prendre soin de vous'" />
+      </div>
+    </section>
+  </section>
+</div>

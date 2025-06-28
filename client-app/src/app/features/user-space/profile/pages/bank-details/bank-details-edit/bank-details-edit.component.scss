@@ -1,0 +1,119 @@
+@use "../../../../../../../../../shared-library/src/lib/styles/variables" as *;
+@use "sass:color";
+h2 {
+  margin: 0 0px;
+  color: $preheader-bg-color;
+}
+.title {
+  color: $preheader-bg-color;
+}
+.subtitle {
+  color: $preheader-bg-color;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-block: 0.5rem 0px;
+}
+.container {
+  width: 50vw;
+}
+.text {
+  color: $table-text-color;
+}
+.section {
+  padding-block: 1rem;
+}
+.icon-title {
+  border-bottom: 1px solid $footer-background-color;
+}
+.full-width {
+  width: 100%;
+}
+.form-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+}
+.beneficiary-form {
+  padding-block: 1rem;
+}
+
+.form-radio {
+  flex-direction: column;
+  gap: 0rem;
+}
+.form-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+}
+.bg-pink {
+  color: $btn-bg-color;
+}
+.ipeca-primary {
+  background-color: $preheader-bg-color;
+  font-family: "Calibri-Bold";
+  font-weight: 500;
+  color: $white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  // États
+  &:hover:not(:disabled) {
+    background-color: $btn-bg-color;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  // Version disabled
+  &:disabled {
+    background-color: color.scale($preheader-bg-color, $lightness: -10%);
+    color: rgba($white, 0.5);
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  // Version avec icône
+  &.with-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+.radio-btn-label {
+  color: $preheader-bg-color;
+}
+.checkbox-section {
+  display: flex;
+  flex-direction: column;
+
+  .checkbox-value {
+    display: flex;
+    gap: 1rem;
+  }
+}
+.modifDate {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+}
+.info-text-required {
+  font-size: 13px;
+  font-style: italic;
+  color: #707070;
+}

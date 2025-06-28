@@ -1,0 +1,35 @@
+<div class="container">
+  <h2 class="title">Compléter ma couverture santé</h2>
+  <p class="text">
+    Pour votre protection sociale, votre employeur a mis en place un contrat
+    collectif et obligatoire auprès d'IPECA PREVOYANCE. Conformément à vos
+    besoins identifiés, vous souhaitez renforcer votre couverture prévoyance
+    obligatoire souscrite par votre employeur et adhérer à titre facultatif à
+    des garanties sur-complémentaires.
+  </p>
+  <mat-accordion [multi]="true">
+    @for (item of customDocsList(); track $index) {
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title class="title main-title"
+          >{{ item.Offer.libelle }}&nbsp;
+          <span class="subtitle">{{ item.subtitle }} (contrat collectif à adhésion test)</span></mat-panel-title
+        >
+      </mat-expansion-panel-header>
+      @for (pdf of item.Pdfs; track $index) {
+      <div class="panel-content">
+        <div class="downloadable-item">
+          <span class="">{{ pdf.pdflib }}</span>
+          <button
+            class="custom-button"
+            mat-icon-button
+            (click)="download(pdf.pdfno)">
+            <mat-icon class="small-icon">save_alt</mat-icon>
+          </button>
+        </div>
+      </div>
+      }
+    </mat-expansion-panel>
+    }
+  </mat-accordion>
+</div>

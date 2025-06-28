@@ -1,0 +1,29 @@
+<div class="container">
+  <mat-action-list>
+    @for (item of items; track $index) {
+    <mat-list-item
+      (click)="toggleChildren(item)"
+      class="mdc-list-parent"
+      [class.selected]="selectedItem === item.id"
+      [class.primary-item]="item.id === '0' || item.id === '1'">
+      <span [class.selected]="selectedItem === item.id">{{ item.label }}</span>
+    </mat-list-item>
+
+    <!-- sub-items -->
+    @if (item.children && item.isExpanded) {
+    <mat-action-list class="sub-list">
+      @for (child of item.children; track child.label) {
+      <mat-list-item
+        (click)="selectChild(item, child); $event.stopPropagation()"
+        [class.selected-item]="selectedItem === child.id">
+        <span
+          class="child-item-text"
+          [class.selected]="selectedItem === child.id"
+          >{{ child.label }}
+        </span>
+      </mat-list-item>
+      }
+    </mat-action-list>
+    } }
+  </mat-action-list>
+</div>

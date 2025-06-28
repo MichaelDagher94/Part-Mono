@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<FileVersion>1.0.1.0</FileVersion>
+		<AssemblyVersion>1.0.1.0</AssemblyVersion>
+		<AssemblyName>Core.Shared</AssemblyName>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<RunPowerShellScript>false</RunPowerShellScript>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="MTT" Version="0.7.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Typescript\" />
+	</ItemGroup>
+
+    <Target Name="Convert" BeforeTargets="PrepareForBuild">
+		<ConvertMain WorkingDirectory="Net/" ConvertDirectory="Typescript/" />
+    </Target>
+
+
+	<Target Name="UpdatePackageJson" AfterTargets="Build">
+		<GetAssemblyIdentity AssemblyFiles="$(OutputPath)$(AssemblyName).dll">
+			<Output TaskParameter="Assemblies" ItemName="AssemblyInfo" />
+		</GetAssemblyIdentity>
+		<Exec Command="powershell -ExecutionPolicy Bypass -File UpdateJson.ps1 -FilePath package.json -Key version -Value %(AssemblyInfo.Version)" Condition="'$(RunPowerShellScript)' == 'true'" />
+	</Target>
+
+</Project>

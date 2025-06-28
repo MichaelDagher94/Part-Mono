@@ -1,0 +1,225 @@
+@let state = (loadingState$ | async); @if (state && state.loading) {
+<lib-skeleton-table-loader />
+}@else{
+<section class="section-container">
+  <h2 class="title">Prise en charge hospitalière</h2>
+  <span class="text">
+    Vous avez été hospitalisé récemment ou vous prévoyez une hospitalisation.
+    L’établissement hospitalier vous a demandé de fournir un accord de prise en
+    charge de votre organisme santé complémentaire. Munissez-vous des documents
+    de pré-admission ou des documents relatifs à l’hospitalisation fournis par
+    l’établissement et complétez les éléments ci-dessous. Si vous disposez de
+    toutes les informations vous pourrez télécharger directement votre prise en
+    charge. Cette rubrique ne concerne pas les dépassements d'honoraires du
+    chirurgien et/ou de l'anesthésiste que vous avez réglés lors de votre
+    intervention chirurgicale.
+  </span>
+  <lib-banner-information [bannerText]="bannerText" />
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width" color="primary">
+        <mat-label class="title">Date d’entrée </mat-label>
+        <input
+          matInput
+          appAutofocus
+          dateInputMask
+          [matDatepicker]="picker"
+          formControlName="dateStart"
+          placeholder="JJ/MM/AAAA" />
+        @if(form.get('dateStart')?.invalid){
+        <mat-error>{{ getErrorMessage("dateStart") }} </mat-error>
+        }
+
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width" color="primary">
+        <mat-label class="title">Date de sortie </mat-label>
+        <input
+          matInput
+          dateInputMask
+          [matDatepicker]="endDatePicker"
+          formControlName="dateEnd"
+          placeholder="JJ/MM/AAAA" />
+        @if(form.get('dateEnd')?.invalid){
+        <mat-error>{{ getErrorMessage("dateEnd") }} </mat-error>
+        }
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="endDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatePicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width" color="primary">
+        <mat-label class="title">Bénéficiaire concerné</mat-label>
+        <mat-select
+          formControlName="beneficiary"
+          (selectionChange)="onTypeSelected($event.value)">
+          @for (type of beneficiaryList(); track type) {
+          <mat-option [value]="type">
+            {{ type.prenom }} {{ type.nom }}
+          </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width" color="primary">
+        <mat-label class="title">Numéro d'entrée </mat-label>
+        <input
+          matInput
+          formControlName="enterNumber"
+          [maxlength]="entryNumberMaxChar" />
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <div class="companySection">
+        <h3 class="subtitle">SÉLECTION DE L’ÉTABLISSEMENT CONCERNÉ</h3>
+        <mat-form-field appearance="outline" class="full-width" color="primary">
+          <mat-label class="title">Code FINESS géographique </mat-label>
+          <input
+            matInput
+            formControlName="finessCode"
+            [minlength]="finessCodeMaxChar"
+            [maxlength]="finessCodeMaxChar"
+            (blur)="onCodeFinessChange()" />
+          <mat-icon
+            matSuffix
+            [matTooltip]="codeFinessTooltip"
+            color="primary"
+            matTooltipClass="custom-tooltip"
+            >help</mat-icon
+          >
+          @if(form.get('finessCode')?.invalid){
+          <mat-error>{{ getErrorMessage("finessCode") }} </mat-error>
+          }
+        </mat-form-field>
+
+        <!-- finess not found-->
+        <mat-checkbox color="primary" formControlName="finessCodeNotFound"
+          >Je ne trouve pas mon code FINESS</mat-checkbox
+        >
+        <!---->
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label class="title"
+            >Dans quelle ville se trouve l’établissement concerné ?
+          </mat-label>
+          <input
+            matInput
+            formControlName="city"
+            [matAutocomplete]="auto"
+            #cityInput="matAutocompleteTrigger"
+            type="text" />
+          <mat-autocomplete
+            #auto="matAutocomplete"
+            autocompleteDisabled
+            (optionSelected)="onCitySelected($event)">
+            @for (city of filteredCities$ | async ; track $index) {
+            <mat-option [value]="city">
+              {{ city }}
+            </mat-option>
+            }
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <!---->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label class="title">Nom de l'établissement </mat-label>
+          <input
+            #companyInput
+            matInput
+            formControlName="companyName"
+            [matAutocomplete]="companyAuto" />
+          <mat-autocomplete
+            [displayWith]="displayCompanyName"
+            autoSelectActiveOption
+            #companyAuto="matAutocomplete"
+            (optionSelected)="onCompanySelected($event)">
+            @for (company of filteredCompanies$ | async; track $index) {
+            <mat-option [value]="company">
+              {{ company.nom }}
+            </mat-option>
+            }
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <!---->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label class="title">Adresse </mat-label>
+          <textarea matInput formControlName="companyAdress"></textarea>
+        </mat-form-field>
+
+        <!---->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label class="title">Fax </mat-label>
+          <input matInput formControlName="companyFax" />
+        </mat-form-field>
+
+        <!-- other fax -->
+        <div class="full-width">
+          <mat-checkbox color="primary" formControlName="userOtherCompanyFax"
+            >Utiliser un autre n° de fax</mat-checkbox
+          >
+        </div>
+        <!---->
+
+        <!---->
+        @if(useOtherCompanyFax()){
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label class="title">Autre n° de fax </mat-label>
+          <input matInput formControlName="otherCompanyFax" maxlength="10" />
+          @if(form.get('otherCompanyFax')?.invalid){
+          <mat-error>{{ getErrorMessage("otherCompanyFax") }} </mat-error>
+          }
+        </mat-form-field>
+        }
+
+        <!-- company not found-->
+        <div class="full-width">
+          <mat-checkbox color="primary" formControlName="companyNotFound"
+            >Je ne trouve pas mon établissement</mat-checkbox
+          >
+          <!---->
+        </div>
+      </div>
+    </div>
+
+    @if(companyNotFound()){
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label class="">Commentaire</mat-label>
+        <textarea
+          matInput
+          formControlName="message"
+          rows="3"
+          maxlength="400"></textarea>
+      </mat-form-field>
+    </div>
+    <div>
+      <app-ipeca-file-upload
+        (filesChanged)="onFileSelected($event)"
+        [sectionName]="sectionName" />
+    </div>
+    }
+
+    <div class="form-actions">
+      <button
+        mat-raised-button
+        color="primary"
+        class="ipeca-primary"
+        type="submit">
+        télécharger
+      </button>
+      <div class="info-text-required">*Champs obligatoires</div>
+    </div>
+  </form>
+
+  <app-beneficiary-cgu type="hospitalCoverage" />
+</section>
+}

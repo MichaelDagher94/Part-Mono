@@ -1,0 +1,29 @@
+@use "../../../../../../../../shared-library/src/lib/styles/variables" as *;
+.title {
+  color: $preheader-bg-color;
+}
+h2 {
+  margin-top: 0;
+  margin-bottom: 0px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+.text {
+  font-size: $font-size-md;
+  color: $table-text-color;
+  line-height: 21px;
+  margin-block: $spacing-md;
+  margin-top: 0;
+  max-width: 50vw;
+}
+a {
+  text-decoration: none;
+  color: $preheader-bg-color;
+  font-weight: 600;
+}
+:host {
+  .mat-mdc-dialog-surface {
+    padding: 15px;
+  }
+}

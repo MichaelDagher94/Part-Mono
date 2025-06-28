@@ -1,0 +1,67 @@
+<h2 class="title">Ajouter multi RIB</h2>
+<p>Ajouter multi RIB - Text</p>
+
+<section>
+  <label class="title subtitle">Bénéficiaire</label>
+  <p class="text">
+    {{ currentBeneficiary().prenom }} {{ currentBeneficiary().nom }}
+  </p>
+</section>
+
+<form
+  [formGroup]="beneficiaryForm"
+  (ngSubmit)="onSubmit()"
+  class="form-container">
+  <div class="form-row">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Domiciliation</mat-label>
+      <input
+        matInput
+        formControlName="domiciliation"
+        placeholder="Saisir la domiciliation" />
+    </mat-form-field>
+  </div>
+  <div class="form-row">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Titulaire du compte</mat-label>
+      <input
+        matInput
+        formControlName="titulaire"
+        placeholder="Nom du titulaire" />
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>IBAN</mat-label>
+      <input matInput formControlName="iban" placeholder="Ex: FR76..." />
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>BIC / SWIFT</mat-label>
+      <input matInput formControlName="bic" placeholder="Ex: ABCDXX22" />
+    </mat-form-field>
+  </div>
+
+  <div class="upload-wrapper">
+    <app-ipeca-file-upload
+      (filesChanged)="onFilesChanged($event)"
+      [sectionName]="sectionName" />
+  </div>
+
+  <div class="form-actions">
+    <button
+      mat-raised-button
+      color="primary"
+      class="ipeca-primary"
+      type="submit">
+      MODIFIER
+    </button>
+
+    <div class="info-text-required">*Champs obligatoires</div>
+  </div>
+</form>
+
+<app-beneficiary-cgu />

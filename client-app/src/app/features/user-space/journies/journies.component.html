@@ -1,0 +1,21 @@
+<div class="container">
+  <lib-custom-tabs
+    (selectedTabChangeEvent)="eventTabChange($event)"
+    [isHealthVisible]="isHealthVisible"
+    [isForesightVisible]="isForesightVisible">
+    <div sante>
+      <app-health-journies
+        (onItemSelected)="handleHealthSubmenuSelected($event)"
+        [selectedItem]="selectedItem" />
+    </div>
+    <div prevoyance>
+      <app-foresight-journies
+        (onItemSelected)="handleHealthSubmenuSelected($event)"
+        [selectedItem]="selectedItem" />
+    </div>
+  </lib-custom-tabs>
+
+  <div>
+    <router-outlet />
+  </div>
+</div>

@@ -1,0 +1,36 @@
+@use "../../../../../../../shared-library/src/lib/styles/variables" as *;
+.container {
+  background-color: $light-blue;
+  padding: 30px;
+  h4 {
+    color: $preheader-bg-color;
+    font-size: 16px;
+    line-height: 19px;
+    font-style: normal;
+    margin: 0 0 18px;
+    font-family: "Calibri", sans-serif;
+  }
+}
+.form-action-buttons {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+.search-button {
+  background-color: $preheader-bg-color;
+  color: $white;
+}
+.reset-button {
+  background-color: transparent;
+  color: $preheader-bg-color;
+  font-size: $font-size-md;
+}
+
+.filter-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+:host ::ng-deep mat-datepicker-toggle button {
+  color: $dark-grey;
+}

@@ -1,0 +1,13 @@
+<div class="content">
+  <app-user-dashboard />
+</div>
+@if(displayQuickAccess()){
+<div class="quick-access-container content">
+  <div class="title">Mes accès rapides</div>
+  <lib-dashboard-quick-access />
+</div>
+}
+<div class="">
+  <lib-dashboard-banner-autopromo />
+</div>
+<lib-dashboard-claim-section />

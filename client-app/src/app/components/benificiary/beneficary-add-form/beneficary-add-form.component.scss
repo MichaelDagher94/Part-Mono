@@ -1,0 +1,100 @@
+@use "@angular/material" as mat;
+@use "../../../../../../shared-library/src/lib/styles/variables" as *;
+@use "sass:color";
+
+.blue-title {
+  color: $preheader-bg-color;
+  font-weight: bold;
+}
+
+.beneficiary-form {
+  width: 50vw;
+  accent-color: green;
+}
+.full-width {
+  width: 100%;
+}
+.form-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+  margin-block: 0.5rem;
+}
+.form-radio {
+  flex-direction: column;
+  gap: 0rem;
+}
+.form-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+}
+.info-text-required {
+  font-size: 13px;
+  font-style: italic;
+  color: #707070;
+}
+.info-icon {
+  color: #707070;
+}
+.rattached {
+  margin-bottom: 1rem;
+  justify-content: flex-start;
+}
+.radio-group {
+  display: flex;
+  gap: 1rem;
+  margin-block: 0.2rem;
+}
+.radio-group-icon {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.ipeca-primary {
+  background-color: $preheader-bg-color;
+  font-family: "Calibri-Bold";
+  font-weight: 500;
+  color: $white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  // États
+  &:hover:not(:disabled) {
+    background-color: $btn-bg-color;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  // Version disabled
+  &:disabled {
+    background-color: color.scale($preheader-bg-color, $lightness: -10%);
+    color: rgba($white, 0.5);
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  // Version avec icône
+  &.with-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+.radio-btn-label {
+  color: $preheader-bg-color;
+}

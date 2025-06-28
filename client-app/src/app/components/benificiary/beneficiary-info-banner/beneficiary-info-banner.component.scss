@@ -1,0 +1,27 @@
+@use "../../../../../../shared-library/src/lib/styles/variables" as *;
+.banner-container {
+  // margin-top: 0.25rem;
+  background-color: $light-blue;
+  color: $table-text-color;
+  display: flex;
+  align-items: center;
+  padding: 20px 28px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  line-height: 18px;
+
+  .banner-title {
+    font-weight: bolder;
+  }
+
+  .icon {
+    background-image: url("/assets/shared-library/help-icon-2x.png");
+    background-position: left center;
+    background-size: 51px;
+    background-repeat: no-repeat;
+    height: 51px;
+    max-width: 51px;
+    flex: 0 0 51px;
+    margin-right: 25px;
+  }
+}

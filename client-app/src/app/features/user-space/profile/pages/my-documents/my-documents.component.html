@@ -1,0 +1,59 @@
+<h2>Mes documents</h2>
+@if( isHealth() && hasCertificate() ) {
+<div class="element-container">
+  <div class="element">
+    <p>Ma carte de tiers payant</p>
+    <button
+      class="custom-button"
+      mat-flat-button
+      color="primary"
+      (click)="carteTPDownload()">
+      {{ docAccessLabel }}
+    </button>
+  </div>
+  <div class="element">
+    <p>Relevé de situation</p>
+    <button
+      class="custom-button"
+      mat-flat-button
+      color="primary"
+      (click)="downloadSituationReport()">
+      {{ downloadDocumentLabel }}
+    </button>
+  </div>
+  <div class="element">
+    <p>Mon attestation d'affiliation</p>
+    <button
+      class="custom-button"
+      mat-flat-button
+      color="primary"
+      (click)="downloadAffiliationCertificate()">
+      {{ downloadDocumentLabel }}
+    </button>
+  </div>
+
+  @if(IsDocumentAttestationSurLHonneur()){
+  <div class="element">
+    <p>Attestation sur l'honneur relative aux enfants à charge</p>
+    <button
+      class="custom-button"
+      mat-flat-button
+      color="primary"
+      (click)="downloadHonorDeclaration()">
+      {{ downloadDocumentLabel }}
+    </button>
+  </div>
+  } @if(hasPaymentSchedule()){
+  <div class="element">
+    <p>Appel cotisation</p>
+    <button
+      class="custom-button"
+      mat-flat-button
+      color="primary"
+      (click)="downloadPaymentSchedule()">
+      {{ downloadDocumentLabel }}
+    </button>
+  </div>
+  }
+</div>
+}

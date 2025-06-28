@@ -1,0 +1,9 @@
+<div class="container">
+  <mat-action-list>
+    @for (item of items; track $index) {
+    <mat-list-item (click)="toggleChildren(item)" class="mdc-list-parent">
+      <span [class.selected]="selectedItem === item.id">{{ item.label }}</span>
+    </mat-list-item>
+    }
+  </mat-action-list>
+</div>

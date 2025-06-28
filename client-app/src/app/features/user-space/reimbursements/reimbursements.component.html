@@ -1,0 +1,34 @@
+<div class="container">
+  <lib-custom-tabs
+    (selectedTabChangeEvent)="eventTabChange($event)"
+    [isHealthVisible]="isHealthVisible"
+    [isForesightVisible]="isForesightVisible">
+    <div sante>
+      <app-health-content-refund (searchElement)="search($event)" />
+    </div>
+    <div prevoyance>
+      <app-benefits-content-refund (searchElement)="searchForesight($event)" />
+    </div>
+  </lib-custom-tabs>
+  @let state = (refundListState$ | async); @if (state && state.loading) {
+  <lib-skeleton-table-loader />
+  }@else {
+
+  <app-reimbursement-data-table
+    [data]="showSante ? dataHealth : dataForesight"
+    [displayedColumns]="showSante ? columns : foresightColumns"
+    [columnTitles]="showSante ? columnTitles : foresightcolumnTitles"
+    [detailColumn]="
+      showSante ? 'remboursementsSanteDetail' : 'remboursementsPrevoyanceDetail'
+    "
+    [refundType]="showSante ? 'health' : 'foresight'"
+    [isSearch]="currentSearch"
+    [showDeleteActions]="false"
+    [showEditActions]="false"
+    [showDownloadActions]="true"
+    [currencyColumns]="currencyColumns"
+    (onDownload)="
+      showSante ? handleDownload($event) : handleDownloadForesight($event)
+    " />
+  }
+</div>

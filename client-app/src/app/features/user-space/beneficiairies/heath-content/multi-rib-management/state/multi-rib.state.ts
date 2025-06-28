@@ -1,0 +1,6 @@
+export const MULTI_RIB_STATE = {
+  PART1_TEXT:
+    "Je consens à la mise en place du MULTI RIB dans le cadre de mon compte personnel assuré. Mon ayant droit se verra donc verser sur le compte bancaire communiqué à IPECA PREVOYANCE à cet effet, les remboursements liés à ses frais de santé. Je consens également à ce que mon ayant droit ait accès à mon compte personnel assuré, et aux données à caractère personnel qu’il contient (données personnelles et données sensibles) et ce afin de télécharger les documents de gestion susceptibles de le concerner, mis à disposition par IPECA PREVOYANCE.",
+  PART2_TEXT:
+    "Je consens à la mise en place du MULTI RIB dans le cadre du compte personnel assuré de mon donnant droit (le participant). Les remboursements liés à mes frais de santé seront ainsi versés sur le compte bancaire communiqué à cet effet à IPECA PREVOYANCE. Je consens également à ce que le donnant droit (le participant) ait accès aux données à caractère personnel me concernant (données personnelles et données sensibles), dans le cadre de l’utilisation de l’espace personnel assuré. Je pourrai y télécharger les documents de gestion susceptibles de me concerner, mis à disposition par IPECA PREVOYANCE.",
+};

@@ -1,0 +1,71 @@
+<div class="file-upload-container">
+  <label class="file-upload-label"
+    >{{ title() }}
+    @if(tooltipMessage()){
+    <mat-icon [matTooltip]="tooltipMessage()" class="bg-pink">help</mat-icon>
+    }
+  </label>
+
+  <ng-content></ng-content>
+
+  <!-- Zone de Drag & Drop + Affichage des fichiers -->
+  <div
+    class="upload-drop-zone"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    (drop)="onDrop($event)"
+    (click)="fileInput.click()"
+    [class.drag-over]="isDragOver">
+    <mat-icon class="upload-icon">file_download</mat-icon>
+    <p>Faites glisser ici votre (vos) pièce(s) jointe(s).</p>
+    <small>
+      Formats acceptés : PDF, JPEG, TIFF, PNG, GIF et BMP<br />
+      Poids maximal : 10 Mo
+    </small>
+
+    <!-- Liste des fichiers affichée dans la zone -->
+    @if (selectedFiles.length > 0) {
+    <mat-list class="upload-list" role="list">
+      @for (file of selectedFiles; track file) {
+      <mat-list-item class="listItem">
+        <mat-icon>attach_file</mat-icon>
+        <span class="file-name">{{ file.name | truncateFileName : 30 }}</span>
+        <span class="file-size">({{ file.size | fileSize }} )</span>
+
+        <!-- Bouton de suppression -->
+        <button
+          type="button"
+          mat-icon-button
+          color="warn"
+          (click)="removeFile($index)"
+          matTooltip="Supprimer ce fichier">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-list-item>
+      }
+    </mat-list>
+    }
+  </div>
+
+  <!-- Section Parcourir -->
+  <div class="browse-section">
+    <span>ou sélectionnez un fichier depuis votre ordinateur :</span>
+    <button
+      mat-stroked-button
+      type="button"
+      color="primary"
+      class="browser-button"
+      (click)="fileInput.click()">
+      PARCOURIR
+    </button>
+  </div>
+
+  <!-- Input file caché -->
+  <input
+    #fileInput
+    type="file"
+    [accept]="ACCEPTED_TYPES"
+    (change)="onFileSelected($event)"
+    multiple
+    hidden />
+</div>

@@ -1,0 +1,67 @@
+<section class="section-container">
+  <h2 class="title">Demande d’information</h2>
+  <span class="text">
+    Vous êtes en arrêt de travail et vous avez un dossier en cous
+    d’indemnisation. Vous souhaitez nous adresser un justificatif relatif à cet
+    arrêt. Nous vous invitons à compléter le formulaire suivant.
+  </span>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Numéro de référence à rappeler (facultatif) </mat-label>
+        <input
+          appAutofocus
+          matInput
+          formControlName="reference"
+          maxlength="30" />
+        <mat-icon matSuffix [matTooltip]="referenceHelp" class="bg-pink"
+          >help</mat-icon
+        >
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Type de demande</mat-label>
+        <mat-select
+          formControlName="type"
+          (selectionChange)="ontypeSelected($event)">
+          @for (type of proofList(); track type) {
+          <mat-option [value]="type">
+            {{ type.typeDocument }}
+          </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label class="">Commentaire</mat-label>
+        <textarea
+          matInput
+          formControlName="message"
+          rows="3"
+          maxlength="400"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="">
+      <app-ipeca-file-upload
+        (filesChanged)="onFileSelected($event)"
+        [sectionName]="sectionName" />
+    </div>
+
+    <div class="form-actions">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="ipeca-primary">
+        TRANSMETTRE
+      </button>
+      <div class="info-text-required">*Champs obligatoires</div>
+    </div>
+  </form>
+  <app-beneficiary-cgu type="reimbursementRequest" />
+</section>

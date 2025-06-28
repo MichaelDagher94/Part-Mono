@@ -1,0 +1,52 @@
+@use "@angular/material" as mat;
+@use "../../../../../../../../shared-library/src/lib/styles/variables" as *;
+@use "sass:color";
+.container {
+  width: 50vw;
+}
+.title {
+  color: $preheader-bg-color;
+  margin: 10px 0;
+}
+h2 {
+  margin-block: 0 10px;
+}
+.main-title {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.info-text {
+  font-style: italic;
+}
+.subtitle {
+  color: $preheader-bg-color;
+  font-weight: normal;
+}
+.text {
+  font-size: $font-size-md;
+  color: $table-text-color;
+  line-height: 21px;
+  margin-block: $spacing-md;
+  max-width: 50vw;
+}
+.downloadable-item {
+  display: flex;
+  justify-content: space-between;
+  span {
+    color: $preheader-bg-color;
+  }
+}
+mat-accordion {
+  @include mat.expansion-overrides(
+    (
+      container-background-color: white,
+      container-text-color: $table-text-color
+    )
+  );
+}
+
+::ng-deep mat-expansion-panel {
+  border-bottom: 1px solid $preheader-bg-color;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+}

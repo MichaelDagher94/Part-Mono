@@ -1,0 +1,55 @@
+// @use "../../styles/variables" as *;
+@use "../../../../../../../shared-library/src/lib/styles/variables" as *;
+
+@use "@angular/material" as mat;
+@use "sass:color";
+
+// mat-datepicker {
+//   @include mat.datepicker-overrides(
+//     (
+//       calendar-period-button-icon-color: $dark-grey,
+//       calendar-navigation-button-icon-color: $dark-grey,
+//       toggle-active-state-icon-color: $dark-grey,
+//       calendar-date-text-color: $dark-grey,
+//       range-input-disabled-state-text-color: $dark-grey,
+//       calendar-container-text-color: $dark-grey,
+//     )
+//   );
+// }
+
+// :host ::ng-deep mat-datepicker-toggle button {
+//   color: $dark-grey;
+// }
+
+.container {
+  background-color: $light-blue;
+  padding: 30px;
+  h4 {
+    color: $preheader-bg-color;
+    font-size: 16px;
+    line-height: 19px;
+    font-style: normal;
+    margin: 0 0 18px;
+    font-family: "Calibri", sans-serif;
+  }
+}
+.form-action-buttons {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+.search-button {
+  background-color: $preheader-bg-color;
+  color: $white;
+}
+.reset-button {
+  background-color: transparent;
+  color: $preheader-bg-color;
+  font-size: $font-size-md;
+}
+
+.filter-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}

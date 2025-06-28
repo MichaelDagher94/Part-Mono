@@ -1,0 +1,52 @@
+<div class="icon-section">
+  <div class="widget-list">
+    @if (isHealth) {
+    <lib-widget-shortcut
+      iconName="badge"
+      title="Mes cartes de tiers payant"
+      (onClick)="goToTiersPayant()" />
+    <lib-widget-shortcut
+      iconName="description"
+      title="Mon attestation d'affiliation"
+      (onClick)="downloadAffiliationCertificate()" />
+    }@else if (isForesight) {
+    <lib-widget-shortcut
+      iconName="badge"
+      title="Désignation de bénéficiaire décès"
+      (onClick)="downloadDesignationBeneficiary()" />
+    <lib-widget-shortcut
+      iconName="description"
+      title="Choix option décès"
+      (onClick)="downloadDeathOptionChoiceFile()" />
+    }
+  </div>
+</div>
+<div class="guarantee-section">
+  <div class="guarantee-header">
+    <span class="guarantee-title">MES GARANTIES</span>
+    <a class="guarantee-link" [href]="guaranteeLinks">Toutes mes garanties</a>
+  </div>
+  <div class="guarantee-underline"></div>
+
+  @for (group of noticeList$ | async; track $index) {
+  <div class="guarantee-group">
+    <div
+      class="guarantee-risque"
+      [ngClass]="{
+        sante: group.risque === 'Santé',
+        prevoyance: group.risque === 'Prévoyance'
+      }">
+      {{ group.risque?.toUpperCase() }}
+    </div>
+    <div *ngFor="let notice of group.items" class="guarantee-contract">
+      <div class="contract-title">MON CONTRAT COLLECTIF</div>
+      <div class="contract-desc">
+        Votre résumé de garantie
+        <button class="download-btn" (click)="downloadNotice(notice)">
+          <mat-icon>download</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  }
+</div>

@@ -1,0 +1,9 @@
+@use "../../../../../../shared-library/src/lib/styles/variables" as *;
+h2 {
+  color: $preheader-bg-color;
+  margin-top: 0;
+  margin-bottom: 0px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+}

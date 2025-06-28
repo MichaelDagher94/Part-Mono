@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Core.Shared</id>
+    <version>1.0.30</version>
+    <authors>Core.Shared</authors>
+    <description>Package Description</description>
+    <repository type="git" commit="17a389f1d04bd5687ef6e7eb47b3fd4ebc7f6ee4" />
+    <dependencies>
+      <group targetFramework="net8.0">
+        <dependency id="MTT" version="0.7.2" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="/home/vsts/work/1/s/Core.Shared/bin/Release/net8.0/Core.Shared.dll" target="lib/net8.0/Core.Shared.dll" />
+  </files>
+</package>

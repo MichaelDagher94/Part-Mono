@@ -1,0 +1,72 @@
+<div class="container">
+  <h4>Filtrer mes règlements par</h4>
+  <form [formGroup]="filterForm" class="filter-form-container">
+    <!--#1-->
+    <mat-form-field appearance="outline">
+      <mat-label>Période d'indemnisation</mat-label>
+      <mat-date-range-input [rangePicker]="pickerCompensation">
+        <input
+          matStartDate
+          dateInputMask
+          formControlName="compensationDateFrom"
+          placeholder="Date de début"
+          (dateChange)="checkValidation()" />
+        <input
+          matEndDate
+          dateInputMask
+          formControlName="compensationDateTo"
+          placeholder="Date de fin"
+          (dateChange)="checkValidation()" />
+      </mat-date-range-input>
+
+      @if (compensationDateError()) {
+      <mat-error>{{ compensationDateError() }}</mat-error>
+      }
+
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="pickerCompensation"></mat-datepicker-toggle>
+      <mat-date-range-picker #pickerCompensation></mat-date-range-picker>
+    </mat-form-field>
+
+    <!-- DATE DE VERSEMENT -->
+    <mat-form-field appearance="outline">
+      <mat-label>Date de versement</mat-label>
+      <mat-date-range-input [rangePicker]="pickerPayout">
+        <input
+          matStartDate
+          dateInputMask
+          formControlName="payoutDateFrom"
+          placeholder="Date de début"
+          (dateChange)="checkValidation()" />
+        <input
+          matEndDate
+          dateInputMask
+          formControlName="payoutDateTo"
+          placeholder="Date de fin"
+          (dateChange)="checkValidation()" />
+      </mat-date-range-input>
+
+      @if (payoutError()) {
+      <mat-error>{{ payoutError() }}</mat-error>
+      }
+
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="pickerPayout"></mat-datepicker-toggle>
+      <mat-date-range-picker #pickerPayout></mat-date-range-picker>
+    </mat-form-field>
+
+    <!-- BUTTON -->
+    <div class="form-action-buttons">
+      <button mat-flat-button class="search-button" (click)="onSubmit()">
+        RECHERCHER
+      </button>
+      @if (filterForm.touched) {
+      <button mat-flat-button class="reset-button" (click)="filterForm.reset()">
+        Réinitialiser les filtres
+      </button>
+      }
+    </div>
+  </form>
+</div>
