@@ -1,0 +1,47 @@
+@use "@angular/material" as mat;
+* {
+  @include mat.all-component-densities(-9);
+}
+
+.search-form {
+  padding: 0 0px;
+  display: block;
+  align-items: center;
+  font-size: 12px;
+
+  --mdc-outlined-text-field-outline-color: transparent;
+  --mdc-outlined-text-field-focus-outline-color: transparent;
+  --mdc-outlined-text-field-hover-outline-color: transparent;
+  --mdc-outlined-text-field-outline-width: 0px;
+  --mdc-outlined-text-field-outline-padding: 0;
+
+  .search-form-field {
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    padding: 0;
+    max-width: 175px;
+
+    ::ng-deep
+      .mat-form-field.mat-mdc-form-field-has-icon-suffix
+      .mat-mdc-text-field-wrapper {
+      padding-inline: 0 !important;
+    }
+  }
+  .search-form-field-input {
+    padding: 0;
+    color: #fff;
+  }
+  .search-form-field-input::placeholder {
+    font-size: 11px;
+    font-style: italic;
+    color: #fff;
+  }
+
+  button[mat-icon-button] {
+    color: white;
+
+    .icon-small {
+      transform: scale(0.7);
+    }
+  }
+}

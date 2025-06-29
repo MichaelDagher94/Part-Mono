@@ -1,0 +1,33 @@
+.header-toolbar {
+  min-height: 56px;
+  padding: 0 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.header-title-nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.nav {
+  display: flex;
+  gap: 1.5rem;
+}
+.title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.spacer {
+  flex: 1;
+}
+.logout-slot button {
+  font-size: 1.1rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+.logout-slot button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}

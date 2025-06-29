@@ -1,0 +1,31 @@
+@use "../../../styles/variables" as *;
+
+.customButton {
+  padding: 13px 12px;
+  background-color: $btn-bg-color !important;
+  text-transform: uppercase;
+  font-family: $font-primary;
+  color: #fff !important;
+  // border-radius: 5px;
+  border-color: transparent;
+  font-size: $font-size-md;
+  font-style: normal;
+  font-weight: 600;
+}
+button.small {
+  font-size: 10px;
+  padding: 0px 4px;
+  font-size: 10px;
+  line-height: 12px;
+  font-family: "Calibri-Bold";
+}
+
+button.medium {
+  font-size: 14px;
+  padding: 6px 12px;
+}
+
+button.large {
+  font-size: 16px;
+  padding: 8px 16px;
+}

@@ -1,0 +1,54 @@
+.toast-container {
+  padding: 16px;
+  border-radius: 4px;
+  color: white;
+  min-width: 300px;
+  max-width: 100%;
+}
+.toast-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.toast-icon {
+  margin-right: 8px;
+}
+.toast-title {
+  margin: 0;
+  flex-grow: 1;
+  font-weight: 500;
+}
+.toast-message {
+  margin: 0;
+  font-size: 14px;
+}
+/* Couleurs par type */
+.success {
+  background-color: #4caf50;
+}
+.warning {
+  background-color: #ffc107;
+  color: #212121;
+}
+.danger {
+  background-color: #f44336;
+}
+.info {
+  background-color: #2196f3;
+}
+
+::ng-deep .mat-mdc-snack-bar-container .mat-mdc-snackbar-surface {
+  background-color: unset;
+  box-shadow: unset;
+}
+
+.toast-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+
+  button {
+    color: white;
+    background-color: transparent;
+  }
+}

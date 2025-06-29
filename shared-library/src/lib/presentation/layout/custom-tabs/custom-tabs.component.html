@@ -1,0 +1,18 @@
+<div class="mat-tab-container">
+  <mat-tab-group
+    animationDuration="0"
+    class="mat-tab-group"
+    (selectedTabChange)="selectedTabChange($event)">
+    @if(isHealthVisible){
+
+    <mat-tab label="santé" class="mat-tab">
+      <ng-content select="[sante]"></ng-content>
+    </mat-tab>
+    } @if(isBenefitVisible){
+
+    <mat-tab label="prévoyance">
+      <ng-content select="[prevoyance]"></ng-content>
+    </mat-tab>
+    }
+  </mat-tab-group>
+</div>

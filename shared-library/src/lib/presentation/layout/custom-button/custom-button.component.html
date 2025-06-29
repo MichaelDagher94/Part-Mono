@@ -1,0 +1,10 @@
+<button
+  mat-flat-button
+  class="customButton"
+  [ngClass]="size()"
+  (click)="handleClick()">
+  @if (showIcon) {
+  <mat-icon>{{ icon }}</mat-icon>
+  }
+  {{ text }}
+</button>

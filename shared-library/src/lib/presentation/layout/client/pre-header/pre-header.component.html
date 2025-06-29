@@ -1,0 +1,12 @@
+<div class="preheader">
+  <ul class="menu-list">
+    @for (item of menuList; track item) {
+    <li>
+      <a [href]="item.path">
+        {{ item.menu }}
+      </a>
+    </li>
+    }
+  </ul>
+  <lib-custom-search-input />
+</div>

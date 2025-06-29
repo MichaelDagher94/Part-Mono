@@ -1,0 +1,13 @@
+<div class="toast-container" [class]="data.type">
+  <div class="toast-header">
+    <mat-icon class="toast-icon">{{ getIcon() }}</mat-icon>
+    <h2 class="toast-title">{{ data.title }}</h2>
+    <button mat-icon-button (click)="dismiss()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <p class="toast-message">{{ data.message }}</p>
+  <div class="toast-footer">
+    <button mat-button color="primary" (click)="dismiss()">OK</button>
+  </div>
+</div>

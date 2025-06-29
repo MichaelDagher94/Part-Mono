@@ -1,0 +1,59 @@
+@if (detailColumn && element[detailColumn]) { @if(refundType() == 'health'){
+<div class="title-detail-content">
+  Soin du {{ element[detailColumn][0].dateDeSoin }} pour
+  {{ element[detailColumn][0].beneficiaireCivilite }}
+  {{ element[detailColumn][0].prenomBeneficiaire }}
+  {{ element[detailColumn][0].beneficiaireNom }}
+</div>
+
+<div>
+  @for (detail of element[detailColumn]; track detail) {
+  <div class="detail-content">
+    <span>{{ detail.libelle }} €</span>
+    <span>{{ detail.depense }} €</span>
+    <span>{{ detail.securiteSociale }} €</span>
+    <span>{{ detail.autreOrganisme }} €</span>
+    <span>{{ detail.verseParIpeca }} €</span>
+    <span>{{ detail.rac }} €</span>
+  </div>
+  }
+</div>
+} @if(refundType() == 'foresight'){
+<div class="title-detail-content">
+  {{ element[detailColumn][0].libelleTypeRemboursement }}
+</div>
+
+<div class="foresight-detail-content title-section">
+  <span>Période d’indemnisation</span>
+  <span>Montant brut</span>
+  <span>CSG non imposable</span>
+  <span>CSG imposable</span>
+  <span>RDS imposable </span>
+  <span>CASA imposable</span>
+  <span>Montant net fiscal</span>
+  <span>P.A.S* type de taux</span>
+  <span>P.A.S* taux</span>
+  <span>P.A.S* montant</span>
+  <span>MONTANT net réglé par IPECA</span>
+</div>
+
+<div>
+  @for (detail of element[detailColumn]; track detail) {
+  <div class="foresight-detail-content">
+    <span>{{ detail.periodeDateRemboursement }}</span>
+    <span>{{ detail.montantBrut }} €</span>
+    <span>{{ detail.csgNonImposable }} €</span>
+    <span>{{ detail.csgImposable }} €</span>
+    <span>{{ detail.rdsImposable }} €</span>
+    <span>{{ detail.casaImposable }} €</span>
+    <span>{{ detail.montantNetFiscal }} </span>
+    <span>{{ detail.pasTypeTaux }} </span>
+    <span>{{ detail.pasTaux }} </span>
+    <span>{{ detail.pasMontant }} €</span>
+    <span>{{ detail.montant }} €</span>
+  </div>
+  }
+
+  <div class="ps">*Prélèvement A la Source</div>
+</div>
+} }

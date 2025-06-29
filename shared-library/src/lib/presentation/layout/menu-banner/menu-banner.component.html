@@ -1,0 +1,10 @@
+<mat-toolbar>
+  @for (menu of menuList; track menu) {
+  <a
+    [href]="menu.path"
+    [class.active]="isActive(menu.path)"
+    (click)="navigateTo(menu.path)"
+    >{{ menu.label }}</a
+  >
+  }
+</mat-toolbar>

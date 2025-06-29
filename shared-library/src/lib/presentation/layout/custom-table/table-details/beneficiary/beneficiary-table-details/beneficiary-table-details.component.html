@@ -1,0 +1,38 @@
+@if (element) {
+<div class="title-detail-content"><strong>Détail</strong></div>
+
+<div class="content">
+  <div class="detail-content-title">
+    <span>Lien de parenté</span>
+  </div>
+
+  <div class="detail-content-value">
+    <span>{{ element.rang?.label || "-" }}</span>
+  </div>
+
+  <div class="detail-content-action">
+    <!-- <button type="button" class="action-btn">Modifier</button> -->
+  </div>
+</div>
+
+<div class="content">
+  <div class="detail-content-title">
+    <span>Statut Télétransmission / Noémisation</span>
+  </div>
+
+  <div class="detail-content-value">
+    <span>{{ element.statutTeletransmission ? "Activé" : "Non Activé" }}</span>
+  </div>
+
+  <div class="detail-content-action">
+    <button
+      mat-button
+      type="button"
+      class="action-btn"
+      (click)="handleEditClick()">
+      Modifier
+    </button>
+  </div>
+</div>
+
+}

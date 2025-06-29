@@ -1,0 +1,60 @@
+.footer-container {
+  width: 100vw;
+  /* position: fixed; */
+  /* bottom: 0; */
+  overflow: hidden;
+  box-sizing: border-box;
+  background-color: #f5f5f5;
+}
+
+.footer-toolbar {
+  color: #1565c0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 8px;
+}
+
+.footer-links a {
+  font-weight: bold;
+  color: inherit;
+  text-decoration: none;
+  margin-right: 1rem;
+  font-size: 12px;
+}
+.footer-links a:last-child {
+  margin-right: 0; /* no margin after last link */
+}
+
+/* Right-side container (social + copyright) */
+.footer-right {
+  display: flex;
+  flex-direction: column; /* stack social and copyright vertically */
+  align-items: flex-end; /* align items to the right end */
+  text-align: right; /* ensure text within is right-aligned */
+}
+
+/* "Suivez-nous" text and icons */
+.footer-right .social {
+  font-size: 0.8em; /* smaller font for "Suivez-nous" section */
+  font-weight: normal; /* not bold */
+}
+.footer-right .social mat-icon {
+  vertical-align: middle; /* align icons with the text baseline */
+  font-size: 20px; /* adjust icon size (20px) to be slightly smaller than default 24px */
+  margin-left: 4px;
+  margin-right: 4px; /* spacing around icons */
+}
+
+/* Copyright text */
+.footer-right .copyright {
+  font-size: 0.8em; /* smaller font for the copyright line */
+  font-style: italic;
+  margin-top: 0px; /* small gap above the copyright text */
+}
+
+/* Flex spacer to push content to sides */
+.spacer {
+  flex: 1 1 auto;
+}

@@ -1,0 +1,116 @@
+<form [formGroup]="exampleForm" (ngSubmit)="onSubmitExampleForm()">
+    <h2>Add a new user</h2>
+    <p>Fill out the details to add the user 🚀</p>
+  
+    <div class="control">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" />
+    </div>
+  
+    <div class="control-row" formGroupName="passwords">
+      <div class="control">
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password" />
+      </div>
+      <div class="control">
+        <label for="confirm-password">Confirm Password</label>
+        <input id="confirm-password" type="password" formControlName="confirmPassword" />
+      </div>
+    </div>
+  
+    <hr />
+  
+    <div>
+      <div class="control-row">
+        <div class="control">
+          <label for="first-name">First Name</label>
+          <input id="first-name" type="text" formControlName="firstName" />
+        </div>
+        <div class="control">
+          <label for="last-name">Last Name</label>
+          <input id="last-name" type="text" formControlName="lastName" />
+        </div>
+      </div>
+  
+      <fieldset>
+        <legend>Your Address</legend>
+        <div class="control-row">
+          <div class="control">
+            <label for="street">Street</label>
+            <input type="text" id="street" />
+          </div>
+          <div class="control">
+            <label for="number">Number</label>
+            <input type="text" id="number" />
+          </div>
+        </div>
+        <div class="control-row">
+          <div class="control">
+            <label for="postal-code">Postal Code</label>
+            <input type="text" id="postal-code" />
+          </div>
+          <div class="control">
+            <label for="city">City</label>
+            <input type="text" id="city" />
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  
+    <hr />
+  
+    <div class="control-row">
+      <div class="control">
+        <label for="role">What best describes your role?</label>
+        <select id="role" formControlName="role">
+          <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
+          <option value="employee">Employee</option>
+          <option value="founder">Founder</option>
+        </select>
+      </div>
+    </div>
+  
+    <fieldset formArrayName="source">
+      <legend>How did you find us?</legend>
+      <div class="control">
+        <input type="checkbox" id="google" value="google" [formControlName]="0" />
+        <label for="google">Google</label>
+      </div>
+      <div class="control">
+        <input type="checkbox" id="friend" value="friend" [formControlName]="1" />
+        <label for="friend">Referred by friend</label>
+      </div>
+      <div class="control">
+        <input type="checkbox" id="other" value="other" [formControlName]="2" />
+        <label for="other">Other</label>
+      </div>
+    </fieldset>
+  
+    <div class="control-row">
+      <div class="control">
+        <label for="terms-and-conditions">
+          <input
+            type="checkbox"
+            id="terms-and-conditions"
+            formControlName="agree"
+          />
+          I agree to the terms and conditions
+        </label>
+      </div>
+    </div>
+  
+    <p class="form-actions">
+      <button type="reset" class="button button-flat" (click)="onResetExampleForm()">
+        Reset
+      </button>
+      <button type="submit" class="button">
+        Add user
+      </button>
+    </p>
+  
+    @if(exampleForm.dirty && exampleForm.touched && exampleForm.invalid) {
+      <p class="control-error">Check data</p>
+    }
+  </form>
+  

@@ -1,0 +1,11 @@
+<header class="header">
+  <div class="headerContainer">
+    <a href="#" (click)="handleLogoClick()"
+      ><img [src]="logoPath" alt="logo" class="logo--site"
+    /></a>
+    <lib-custom-button
+      text="se déconnecter"
+      (onClick)="disconnect()"
+      [showIcon]="false" />
+  </div>
+</header>

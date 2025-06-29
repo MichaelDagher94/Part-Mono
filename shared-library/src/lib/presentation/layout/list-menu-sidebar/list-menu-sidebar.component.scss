@@ -1,0 +1,33 @@
+@use "../../../styles/variables" as *;
+@use "@angular/material" as mat;
+.container {
+  background-color: $light-blue;
+}
+.mdc-list {
+  padding: 0;
+}
+.mdc-list-item {
+  font-family: Calibri;
+  width: 100%;
+  font-size: 14px;
+}
+
+.mdc-list-parent {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+.selected {
+  color: $btn-bg-color;
+}
+
+mat-action-list {
+  @include mat.list-overrides(
+    (
+      list-item-container-color: $light-blue,
+      list-item-label-text-color: $preheader-bg-color,
+      list-item-label-text-size: $font-size-md,
+    )
+  );
+}
+.child-item-text {
+  margin-left: 1rem;
+}

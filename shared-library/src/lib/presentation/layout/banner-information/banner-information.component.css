@@ -1,0 +1,21 @@
+.banner-container {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  font-size: 14px;
+  background-color: #0000000d;
+  color: #b11270;
+  box-shadow: #0000001f 0 2px 0 0;
+  margin: 20px auto 30px;
+  font-style: italic;
+}
+
+.banner-container .icon-info {
+  margin-right: 10px;
+}
+
+.info-text-required {
+  font-size: 13px;
+  font-style: italic;
+  color: #707070;
+}

@@ -1,0 +1,17 @@
+@use "../../../../../../styles/variables" as *;
+.title-detail-content {
+  padding-block: 12px;
+  color: $preheader-bg-color;
+  border-bottom: 1px solid $preheader-bg-color;
+}
+.content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-row-gap: 0px;
+  padding: calc($spacing-xs/2);
+  grid-column-gap: $spacing-md;
+}
+button {
+  font-weight: bold;
+}

@@ -1,0 +1,14 @@
+<mat-toolbar color="primary" class="header-toolbar">
+  <div class="header-title-nav">
+    <div class="title">
+      <ng-content select="[header-title]"></ng-content>
+    </div>
+    <nav class="nav">
+      <ng-content select="[header-nav]"></ng-content>
+    </nav>
+  </div>
+  <span class="spacer"></span>
+  <div class="logout-slot">
+    <ng-content select="[header-logout]"></ng-content>
+  </div>
+</mat-toolbar>

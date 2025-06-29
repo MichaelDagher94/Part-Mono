@@ -1,0 +1,104 @@
+<div class="table-container">
+  @if(showPagination){
+  <mat-paginator
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    class="paginator"></mat-paginator>
+  } @if (data && data.length <= 0){
+  <span class="text"> {{ emptyMsg() }} </span>
+  } @else {
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="mat-elevation-z1"
+    multiTemplateDataRows>
+    @for(column of displayedColumns; track column) { @if (column !== 'actions'
+    && column !== 'download' && column !== detailColumn) {
+    <ng-container [matColumnDef]="column">
+      <th mat-header-cell *matHeaderCellDef class="center-header">
+        {{ columnTitles[column] || column }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        @if(column === 'nomComplet' && isFromSanteListe) {
+        <strong>{{ row[column] }}</strong>
+        } @else {
+        {{ row[column] }}
+        }
+      </td>
+    </ng-container>
+    } }
+
+    <ng-container matColumnDef="download">
+      <th mat-header-cell *matHeaderCellDef class="center-header">
+        {{ columnTitles["download"] || "" }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        @if(showDownloadActions && row.canDownload){
+        <lib-custom-icons-btn
+          iconName="save_alt"
+          tooltip="Télécharger"
+          [show]="showDownloadActions"
+          (onBtnClick)="handleDownloadBtn(row)" />
+        } @else {
+        <span>Non disponible</span>
+        }
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef class="center-header"></th>
+      <td mat-cell *matCellDef="let row">
+        <lib-custom-icons-btn
+          iconName="create"
+          tooltip="Modifier"
+          [show]="showEditActions"
+          (onBtnClick)="handleEditBtn(row)" />
+        <lib-custom-icons-btn
+          iconName="remove_circle"
+          tooltip="Supprimer"
+          [show]="showDeleteActions"
+          (onBtnClick)="handleDeleteBtn(row)" />
+        @if(detailColumn){
+        <button mat-icon-button (click)="toggleRow(row)">
+          <mat-icon [ngClass]="'expand-icon'">{{
+            isExpanded(row) ? "expand_less" : "expand_more"
+          }}</mat-icon>
+        </button>
+        }
+      </td>
+    </ng-container>
+
+    <!-- Détail développé, affiché si detailColumn est renseigné -->
+    <ng-container matColumnDef="expandedDetail">
+      <td
+        class="details-content"
+        mat-cell
+        *matCellDef="let element"
+        [attr.colspan]="displayedColumns.length">
+        <div
+          class="example-element-detail-wrapper"
+          [class.example-element-detail-wrapper-expanded]="isExpanded(element)">
+          <lib-beneficiary-table-details
+            [element]="element"
+            (handleEdit)="detailEdithandle(element)" />
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      class="data-row"
+      [class.expanded]="isExpanded(row)"></tr>
+
+    <!-- Ligne d'expansion -->
+    <tr
+      mat-row
+      *matRowDef="let row; columns: ['expandedDetail']"
+      class="example-detail-row"
+      [class.hidden]="!isExpanded(row)"></tr>
+  </table>
+  }
+</div>

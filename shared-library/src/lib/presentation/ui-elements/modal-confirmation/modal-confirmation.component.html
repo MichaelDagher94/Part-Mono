@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+
+<mat-dialog-content>
+  <p>{{ data.message }}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button (click)="onCancel()" color="primary">
+    {{ data.cancelText }}
+  </button>
+
+  <button
+    mat-flat-button
+    (click)="onConfirm()"
+    color="primary"
+    class="ipeca-primary">
+    {{ data.confirmText }}
+  </button>
+</mat-dialog-actions>

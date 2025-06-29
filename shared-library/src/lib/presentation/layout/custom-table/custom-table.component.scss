@@ -1,0 +1,116 @@
+@use "../../../styles/variables" as *;
+@use "@angular/material" as mat;
+.text {
+  color: $table-text-color;
+}
+
+table {
+  width: 100%;
+  background-color: $white;
+
+  ::ng-deep .mat-sort-header-container {
+    justify-content: center;
+  }
+
+  th,
+  td {
+    color: $table-text-color;
+    text-align: center;
+  }
+
+  th {
+    text-transform: uppercase;
+    border-top: 1px solid $light-grey;
+    border-bottom: 1px solid $dark-grey;
+  }
+
+  td {
+    border-top: 1px solid $light-grey;
+    border-bottom: 1px solid $light-grey;
+  }
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  /* Nouvelle section */
+  .data-row {
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #f5f5f5; /* Couleur de survol de la ligne */
+    }
+
+    &.expanded {
+      background-color: #f0f8ff; /* Couleur de la ligne lorsqu'elle est développée */
+    }
+  }
+
+  /* Détail masqué par défaut */
+  &.example-element-detail-wrapper {
+    display: none !important;
+    max-height: 0;
+    opacity: 0;
+  }
+
+  /* Détail visible quand développé */
+  &.example-element-detail-wrapper-expanded {
+    display: block;
+    max-height: 1000px; /* Hauteur suffisante pour afficher les détails */
+    opacity: 1;
+  }
+
+  .example-element-detail-wrapper-expanded {
+    display: block;
+  }
+}
+.example-detail-row.hidden {
+  display: none;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  transition: all 0.3s ease; /* Pour une transition fluide */
+}
+
+mat-paginator {
+  @include mat.paginator-overrides(
+    (
+      container-text-color: $dark-grey,
+      container-background-color: $white,
+      enabled-icon-color: $dark-grey,
+      disabled-icon-color: $light-grey,
+    )
+  );
+  @include mat.select-overrides(
+    (
+      panel-background-color: orange,
+      enabled-trigger-text-color: $preheader-bg-color,
+      focused-arrow-color: $preheader-bg-color,
+      enabled-arrow-color: $preheader-bg-color,
+    )
+  );
+}
+
+.cdk-overlay-pane:not(.mat-mdc-select-panel-above) div.mat-mdc-select-panel {
+  background-color: orange !important;
+}
+.details-content {
+  background-color: rgba(112, 112, 112, 0.05);
+}
+.title-detail-content {
+  padding-block: 12px;
+  color: $primary-color;
+  border-bottom: 1px solid $preheader-bg-color;
+}
+.detail-content {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr;
+  grid-row-gap: 0px;
+  padding: $spacing-md;
+  grid-column-gap: $spacing-md;
+}
+.expand-icon {
+  color: $btn-bg-color;
+}

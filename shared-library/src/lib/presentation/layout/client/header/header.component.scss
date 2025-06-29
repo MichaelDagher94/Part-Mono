@@ -1,0 +1,47 @@
+@use "../../../../styles/variables" as *;
+
+.header {
+  background-color: $background-color;
+  color: $text-color;
+  padding: 15px 0;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  // max-width: 1300px;
+  padding: 0 5vw;
+  padding-left: 10vw;
+  align-items: center;
+
+  @media (max-width: 1300px) {
+    padding: 0 24px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 16px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 12px;
+  }
+}
+.logo--site {
+  max-width: 13rem;
+  @media (min-width: 1200px) {
+    .logo--site {
+      max-width: 20rem;
+      margin-right: 5rem;
+    }
+  }
+  @media (min-width: 992px) {
+    .logo--site {
+      max-width: 13rem;
+      margin-right: 2rem;
+    }
+  }
+}

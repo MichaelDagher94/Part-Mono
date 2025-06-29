@@ -1,0 +1,16 @@
+.key-value-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0px;
+  color: #707070;
+  text-transform: none;
+}
+.key {
+  font-weight: bold;
+}

@@ -1,0 +1,35 @@
+@use "@angular/material" as mat;
+@use "../../../styles/variables" as *;
+
+mat-tab-group {
+  @include mat.tabs-overrides(
+    (
+      active-indicator-color: $preheader-bg-color,
+      divider-color: $primary-color,
+      active-ripple-color: $primary-color,
+      inactive-ripple-color: $primary-color,
+      active-hover-indicator-color: $preheader-bg-color,
+      active-focus-indicator-color: $preheader-bg-color,
+      active-label-text-color: $preheader-bg-color,
+      inactive-label-text-color: $preheader-bg-color,
+      active-hover-label-text-color: $preheader-bg-color,
+      inactive-hover-label-text-color: $preheader-bg-color,
+      // label-text-weight: 600,
+      active-focus-label-text-color: $preheader-bg-color,
+      label-text-weight: bold,
+    )
+  );
+}
+
+::ng-deep .mat-mdc-tab .mdc-tab__text-label {
+  font-weight: bolder !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: "Calibri-Bold";
+  font-weight: normal;
+  line-height: 16px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  color: #003264;
+}
